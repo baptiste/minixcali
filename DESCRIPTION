@@ -1,0 +1,24 @@
+Package: miniexcali
+Type: Package
+Title: Excalidraw Document Builder
+Version: 0.0.1
+Authors@R: c(person("Baptiste", "Auguie",
+    email = "baptiste.auguie@gmail.com",
+    role = c("aut", "cre")))
+Description: Build Excalidraw documents with R.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/baptiste/miniexcali
+Imports:
+    R6,
+    jsonlite,
+    glue
+Suggests: 
+    knitr,
+    rmarkdown,
+    xml2,
+    purrr,
+    htmltools
+VignetteBuilder: knitr
+RoxygenNote: 7.1.0
