@@ -135,6 +135,10 @@ g_element <- function(...){
   
   new_props <- list(...)
   new_props[is.na(new_props)] <- NULL # remove NAs
+  if("points" %in% names(new_props)){
+    # grab the matrix from the list wrapper
+    new_props[['points']] <- new_props[['points']][[1]]
+  }
   
   new_elem <- modifyList(list(
     type = 'rectangle', 
