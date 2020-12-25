@@ -1,0 +1,115 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "x": -156,
+      "y": -80,
+      "width": 400,
+      "height": 300,
+      "angle": 0,
+      "strokeColor": "#495057",
+      "backgroundColor": "#ced4da",
+      "fillStyle": "cross-hatch",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "strokeSharpness": "sharp",
+      "isDeleted": false,
+      "groupIds": [
+        "mygroup",
+        "group2"
+      ],
+      "boundElementIds": null,
+      "id": "9e7c508449630b21de556340c1524f2e",
+      "seed": 1515618218,
+      "version": 32,
+      "versionNonce": 784119031
+    },
+    {
+      "type": "rectangle",
+      "x": 262,
+      "y": -80,
+      "width": 400,
+      "height": 300,
+      "angle": 0,
+      "strokeColor": "#495057",
+      "backgroundColor": "#ced4da",
+      "fillStyle": "cross-hatch",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "strokeSharpness": "sharp",
+      "isDeleted": false,
+      "groupIds": [
+        "mygroup",
+        "group2"
+      ],
+      "boundElementIds": null,
+      "id": "2d0fbfd418511e5d134f2cc133e1be33",
+      "seed": 648220103,
+      "version": 32,
+      "versionNonce": 784119031
+    },
+    {
+      "type": "rectangle",
+      "x": -156,
+      "y": 240,
+      "width": 400,
+      "height": 300,
+      "angle": 0,
+      "strokeColor": "#495057",
+      "backgroundColor": "#ced4da",
+      "fillStyle": "cross-hatch",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "strokeSharpness": "sharp",
+      "isDeleted": false,
+      "groupIds": [
+        "mygroup",
+        "group2"
+      ],
+      "boundElementIds": null,
+      "id": "e84e75fe8aed8e2be90fe0c2e14b2130",
+      "seed": 1893691725,
+      "version": 32,
+      "versionNonce": 784119031
+    },
+    {
+      "type": "ellipse",
+      "x": 263,
+      "y": 240,
+      "width": 400,
+      "height": 300,
+      "angle": 0.3927,
+      "strokeColor": "#495057",
+      "backgroundColor": "#ced4da",
+      "fillStyle": "cross-hatch",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "strokeSharpness": "sharp",
+      "isDeleted": false,
+      "groupIds": [
+        "mygroup",
+        "group2"
+      ],
+      "boundElementIds": null,
+      "id": "4f0e87fc77fe1a4e13740f37f0d08eb8",
+      "seed": 1043216885,
+      "version": 32,
+      "versionNonce": 784119031
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  }
+}

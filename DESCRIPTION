@@ -12,8 +12,13 @@ LazyData: true
 URL: https://github.com/baptiste/miniexcali
 Imports:
     R6,
-    jsonlite,
-    glue
+    jsonlite
+Depends:    
+    tibble,
+    tidyr,
+    magrittr,
+    purrr,
+    tidyr
 Suggests: 
     knitr,
     rmarkdown,

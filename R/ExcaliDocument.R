@@ -114,11 +114,11 @@ g_rectangle <- function(...){
     opacity = 100L,  
     strokeSharpness = "sharp", 
     isDeleted = FALSE, 
+    groupIds = list(),
     boundElementIds = NA), 
     new_props)
   
   new_elem$type = "rectangle"
-  new_elem$groupIds = list()
   # hashing the element to make a unique ID
   new_elem$id =  digest::digest(new_elem, algo="md5")
   new_elem$seed = abs(sample(.Random.seed[-1], 1))
@@ -156,10 +156,13 @@ g_element <- function(...){
     opacity = 100L,  
     strokeSharpness = "sharp", 
     isDeleted = FALSE, 
+    groupIds = list(),
     boundElementIds = NA), 
     new_props)
   
-  new_elem$groupIds = list()
+  new_elem$groupIds <- as.list(new_props$groups)
+  new_elem$groups <- NULL
+  # print(new_elem$groupIds)
   # hashing the element to make a unique ID
   new_elem$id =  digest::digest(new_elem, algo="md5")
   new_elem$seed = abs(sample(.Random.seed[-1], 1))
