@@ -1,2 +1,2 @@
-# minixcali
-experiment to create excalidraw objects from R
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
