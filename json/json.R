@@ -2,9 +2,13 @@
 
 library(jsonlite)
 library(tibble)
+library(tidyr) # v list-columns
+library(magrittr)
 
 gly_rect <- function(x, y, width, height, attributes = list()){
-  tibble::tibble(x = x, y = y, width = width, height = height)
+  tb <- tibble::tibble(x = x, y = y, width = width, height = height)
+  tb$attributes <- attributes
+  tb
 }
 
 j <- jsonlite::read_json('json/multi.json', simplifyVector = FALSE)
@@ -14,15 +18,22 @@ ys <- vapply(j$elements, "[[",'y', FUN.VALUE = pi)
 ws <- vapply(j$elements, "[[",'width', FUN.VALUE = pi)
 hs <- vapply(j$elements, "[[",'height', FUN.VALUE = pi)
 
-rs <- gly_rect(x = xs, y = ys, width = w, height = h)
+rs <- gly_rect(x = xs, y = ys, width = ws, height = hs, 
+               attributes = lapply(seq_along(xs), function(x)
+                 list(fillStyle = "hachure", 
+                      strokeWidth = 1L)))
+str(rs)
+
+library(tidyr)
+rs %>% unnest_wider(attributes)
 
 library(miniexcali)
 
 rs <- tribble(~x,~y,~width,~height,
               -156 ,   -80,   400,    300,
-               262 ,   -80,   400,    300,
+              262 ,   -80,   400,    300,
               -156 ,   240,   400,    300,
-               263.,   240,   400,    300)
+              263.,   240,   400,    300)
 
 a <- Excali_doc()
 for(ii in 1:nrow(rs))
