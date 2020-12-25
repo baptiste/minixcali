@@ -127,6 +127,24 @@ tree_g$attributes = list(list(
 
 att <- tree_g %>% unnest_wider(attributes)
 a$add(invoke(miniexcali::g_element, att))
+
+pts <- gly_glyph(type = 'ellipse',
+                x = runif(20, -140, 460) + 891, 
+                y = runif(20, -400, 200) + 340.5000000000001, 
+                width = runif(20, 10, 20), 
+                height = runif(20, 10, 20), 
+                attributes = lapply(1:20, function(ii)
+                  list(fillStyle = if(ii%%2) "hachure" else "solid", 
+                       strokeWidth = 1L,
+                       backgroundColor = sample(size = 1, hcl(seq(0,100))))))
+
+str(pts)
+
+
+invoke(a$add, pmap(pts %>% unnest_wider(attributes), 
+                   miniexcali::g_element))
+
+
 a$export('strip.json')
 
 
