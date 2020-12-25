@@ -164,10 +164,10 @@ for(l in .roberto){
                        y=scale*l$y,
                        width=scale*l$width,
                        height=scale*l$height,
-                       attributes=list(list(roughness=2)))
+                       attributes=list(list(roughness=1)))
   
   new_stroke$attributes = list(list(strokeWidth = 1L,
-                                 roughness=2L,
+                                 roughness=0L,
                                  groups = c("roberto"),
                                  strokeColor = l$strokeColor,
                                  backgroundColor = l$backgroundColor,
@@ -187,10 +187,10 @@ for(l in .kevin){
                           y=scale*l$y,
                           width=scale*l$width,
                           height=scale*l$height,
-                          attributes=list(list(roughness=2)))
+                          attributes=list(list(roughness=1)))
   
   new_stroke$attributes = list(list(strokeWidth = 1L,
-                                 roughness=2L,
+                                 roughness=0L,
                                  groups = c("kevin"),
                                  strokeColor = l$strokeColor,
                                  backgroundColor = l$backgroundColor,
