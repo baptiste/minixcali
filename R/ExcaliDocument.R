@@ -129,6 +129,42 @@ g_rectangle <- function(...){
 }
 
 
+#' @param ... glyph attributes
+#' @export
+g_element <- function(...){
+  
+  new_props <- list(...)
+  new_props[is.na(new_props)] <- NULL # remove NAs
+  
+  new_elem <- modifyList(list(
+    type = 'rectangle', 
+    x = 0, 
+    y = 0, 
+    width = 400, 
+    height = 300, 
+    angle = 0, 
+    strokeColor = "#495057", 
+    backgroundColor = "#ced4da", 
+    fillStyle = "hachure", 
+    strokeWidth = 1, 
+    strokeStyle = "solid", 
+    roughness = 1L, 
+    opacity = 100L,  
+    strokeSharpness = "sharp", 
+    isDeleted = FALSE, 
+    boundElementIds = NA), 
+    new_props)
+  
+  new_elem$groupIds = list()
+  # hashing the element to make a unique ID
+  new_elem$id =  digest::digest(new_elem, algo="md5")
+  new_elem$seed = abs(sample(.Random.seed[-1], 1))
+  new_elem$version = 32L # no idea
+  new_elem$versionNonce = 784119031L # no idea
+  
+  new_elem
+}
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @description Remove child objects at the given indices
 #'
