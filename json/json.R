@@ -31,7 +31,9 @@ rs <- gly_glyph(type = c('rectangle','rectangle','rectangle','ellipse'),
                 x = xs, y = ys, 
                 width = ws, height = hs, 
                 attributes = lapply(seq_along(xs), function(ii)
-                  list(fillStyle = if(ii%%2) "hachure" else "solid", 
+                  list(fillStyle = dplyr::case_when(ii==1 ~ "hachure",
+                                             ii==2 ~ "solid", 
+                                             ii==3 ~ "solid", TRUE ~ "cross-hatch"),
                        strokeWidth = 2L)))
 
 rs[2,]$attributes[[1]] <- append(rs[2,]$attributes[[1]], 
@@ -39,11 +41,10 @@ rs[2,]$attributes[[1]] <- append(rs[2,]$attributes[[1]],
 
 rs[3,]$attributes[[1]] <- append(rs[3,]$attributes[[1]], 
                                  list(roughness=1,
-                                      backgroundColor = '#80FFFF'))
-
+                                      backgroundColor = '#fafafb'))
 
 rs[4,]$attributes[[1]] <- append(rs[4,]$attributes[[1]], 
-                                 list(roughness=0,angle=pi/4))
+                                 list(roughness=0,angle=pi/8))
 
 str(rs)
 
@@ -139,24 +140,74 @@ att <- tree_g %>% unnest_wider(attributes)
 a$add(invoke(miniexcali::g_element, att))
 
 pts <- gly_glyph(type = 'ellipse',
-                x = tree[,1] + 891, 
-                y = tree[,2] + 340.5000000000001, 
-                width = runif(nrow(tree), 10, 20), 
-                height = runif(nrow(tree), 10, 20), 
-                attributes = lapply(1:nrow(tree), function(ii)
-                  list(fillStyle = if(ii%%2) "hachure" else "solid", 
-                       strokeWidth = 1L,
-                       backgroundColor = sample(size = 1, hcl(seq(0,360))))))
+                 x = tree[,1] + 891, 
+                 y = tree[,2] + 340.5000000000001, 
+                 width = runif(nrow(tree), 10, 20), 
+                 height = runif(nrow(tree), 10, 20), 
+                 attributes = lapply(1:nrow(tree), function(ii)
+                   list(fillStyle = if(ii%%2) "hachure" else "solid", 
+                        strokeWidth = 1L,
+                        backgroundColor = sample(size = 1, hcl(seq(0,360))))))
 
 str(pts)
 
-
-invoke(a$add, pmap(pts %>% unnest_wider(attributes), 
+# 
+invoke(a$add, pmap(pts %>% unnest_wider(attributes),
                    miniexcali::g_element))
 
 
+
+library(gridfont)
+let <- create_text_df('merry_christmas')
+
+llet <- split(let, let$char_idx)
+
+scale <- 25
+offset_x <- 100
+offset_y <- 400
+
+for(l in llet){
+  col <- sample(size = 1, hcl(seq(0,360), c = 50, l=70))
+  new_let <- gly_glyph(type = 'line',  
+                       x=scale*max(l$xoffset)-offset_x,
+                       y=scale*min(10 - l$y)-offset_y,
+                       width=diff(scale*range(l$x)),
+                       height=diff(scale*range(l$y)),
+                       attributes=list(list(roughness=2)))
+  
+  xy <- cbind(scale*l$x, scale*(10 - l$y))
+  xy[,1] <- xy[,1] - min(xy[,1])
+  xy[,2] <- xy[,2] - min(xy[,2])
+  new_let$attributes = list(list(strokeWidth = 1L,
+                                 roughness=2L,
+                                 strokeColor = col,
+                                 backgroundColor = "#40c057",
+                                 fillStyle = "cross-hatch", 
+                                 points = xy))
+  
+  att <- new_let %>% unnest_wider(attributes)
+  a$add(invoke(miniexcali::g_element, att))
+  
+  r <- runif(nrow(xy), 5, 15)
+  pts <- gly_glyph(type = 'ellipse',
+                   x = scale*max(l$xoffset)+xy[,1] - 0.5*r-offset_x, 
+                   y = scale*min(10 - l$y) + xy[,2] - 0.5*r-offset_y, 
+                   width = r, 
+                   height = r, 
+                   attributes = lapply(1:nrow(xy), function(ii)
+                     list(fillStyle =  "cross-hatched", 
+                          strokeWidth = 0L,
+                          backgroundColor = sample(size = 1, hcl(seq(0,360))))))
+  
+
+  invoke(a$add, pmap(pts %>% unnest_wider(attributes),
+                     miniexcali::g_element))
+
+  
+}
+
 a$export('strip.json')
 
+# https://excalidraw.com/#json=6272303994241024,yokUkJYuUO4Sgl8TpXSbQw
 
 
-# jsonlite::toJSON(tree)
