@@ -16,4 +16,4 @@ library(miniexcali)
 knitr::include_graphics('json/preview.png')
 ```
 
-
+![preview](json/preview.png)
