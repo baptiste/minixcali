@@ -1,13 +1,13 @@
 
 
+library(miniexcali)
 library(jsonlite)
 library(tibble)
 library(tidyr) # v list-columns
 library(magrittr)
-# 
-# j <- jsonlite::read_json('json/tree.json', simplifyVector = FALSE)
-
-# dput(as.numeric(do.call(rbind, dput(j$elements[[1]]$points))))
+library(purrr)
+library(tidyr)
+library(tidyr)
 
 gly_glyph <- function(type,
                       x, y, 
@@ -20,6 +20,7 @@ gly_glyph <- function(type,
   tb
 }
 
+## grab locations of rectangles from manual drawing
 j <- jsonlite::read_json('json/multi.json', simplifyVector = FALSE)
 
 xs <- vapply(j$elements, "[[",'x', FUN.VALUE = pi)
@@ -46,13 +47,6 @@ rs[3,]$attributes[[1]] <- append(rs[3,]$attributes[[1]],
 rs[4,]$attributes[[1]] <- append(rs[4,]$attributes[[1]], 
                                  list(roughness=0,angle=pi/8))
 
-str(rs)
-
-library(tidyr)
-rs %>% unnest_wider(attributes)
-
-library(miniexcali)
-
 # rs <- tribble(~x, ~y, ~width, ~height,
 #               -156 ,   -80,   400,    300,
 #               262 ,   -80,   400,    300,
@@ -65,20 +59,14 @@ a <- Excali_doc()
 #                   width = rs$width[ii], height = rs$height[ii])
 
 
-library(purrr)
-library(tidyr)
-
-rs
-# A tibble: 4 x 5
-# x     y width height attributes      
-# <dbl> <dbl> <dbl>  <dbl> <list>          
-#   1 -156    -80   400    300 <named list [2]>
-#   2  262    -80   400    300 <named list [2]>
-#   3 -156    240   400    300 <named list [3]>
-#   4  263.   240   400    300 <named list [2]>
 att <- rs %>% unnest_wider(attributes)
-att
 invoke(a$add, pmap(att, miniexcali::g_element))
+
+
+## grab coords of manually drawn tree
+
+# j <- jsonlite::read_json('json/tree.json', simplifyVector = FALSE)
+# dput(as.numeric(do.call(rbind, dput(j$elements[[1]]$points))))
 
 tree <- matrix(c(69.400466272227, 81.2830098399034, 78.3123739479842, 18.8996561095993, 
                  -82.1019642156554, -143, -132.602774378283, -96.9551436752517, 
@@ -139,6 +127,7 @@ tree_g$attributes = list(list(
 att <- tree_g %>% unnest_wider(attributes)
 a$add(invoke(miniexcali::g_element, att))
 
+## add garlands
 pts <- gly_glyph(type = 'ellipse',
                  x = tree[,1] + 891, 
                  y = tree[,2] + 340.5000000000001, 
@@ -149,14 +138,12 @@ pts <- gly_glyph(type = 'ellipse',
                         strokeWidth = 1L,
                         backgroundColor = sample(size = 1, hcl(seq(0,360))))))
 
-str(pts)
 
-# 
 invoke(a$add, pmap(pts %>% unnest_wider(attributes),
                    miniexcali::g_element))
 
 
-
+## get nodes of text shapes
 library(gridfont)
 let <- create_text_df('merry_christmas')
 
