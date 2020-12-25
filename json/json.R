@@ -19,9 +19,9 @@ ws <- vapply(j$elements, "[[",'width', FUN.VALUE = pi)
 hs <- vapply(j$elements, "[[",'height', FUN.VALUE = pi)
 
 rs <- gly_rectangle(x = xs, y = ys, width = ws, height = hs, 
-               attributes = lapply(seq_along(xs), function(x)
-                 list(fillStyle = "hachure", 
-                      strokeWidth = 1L)))
+                    attributes = lapply(seq_along(xs), function(ii)
+                      list(fillStyle = if(ii%%2) "hachure" else "solid", 
+                           strokeWidth = 1L)))
 rs[3,]$attributes[[1]] <- append(rs[3,]$attributes[[1]], 
                                  list(backgroundColor = '#80FFFF'))
 str(rs)
@@ -31,11 +31,11 @@ rs %>% unnest_wider(attributes)
 
 library(miniexcali)
 
-rs <- tribble(~x,~y,~width,~height,
-              -156 ,   -80,   400,    300,
-              262 ,   -80,   400,    300,
-              -156 ,   240,   400,    300,
-              263.,   240,   400,    300)
+# rs <- tribble(~x, ~y, ~width, ~height,
+#               -156 ,   -80,   400,    300,
+#               262 ,   -80,   400,    300,
+#               -156 ,   240,   400,    300,
+#               263.,   240,   400,    300)
 
 a <- Excali_doc()
 # for(ii in 1:nrow(rs))
@@ -43,6 +43,8 @@ a <- Excali_doc()
 #                   width = rs$width[ii], height = rs$height[ii])
 
 library(purrr)
-invoke(a$add, pmap(rs, g_rectangle))
+library(tidyr)
+att <- rs %>% unnest_wider(attributes)
+invoke(a$add, pmap(att, miniexcali::g_rectangle))
 
 a$export('strip.json')

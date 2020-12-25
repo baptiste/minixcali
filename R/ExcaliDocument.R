@@ -96,6 +96,9 @@ ExcaliDoc <- R6::R6Class(
 #' @export
 g_rectangle <- function(...){
   
+  new_props <- list(...)
+  new_props[is.na(new_props)] <- NULL # remove NAs
+  
   new_elem <- modifyList(list(
     x = 0, 
     y = 0, 
@@ -112,7 +115,7 @@ g_rectangle <- function(...){
     strokeSharpness = "sharp", 
     isDeleted = FALSE, 
     boundElementIds = NA), 
-    list(...))
+    new_props)
   
   new_elem$type = "rectangle"
   new_elem$groupIds = list()
