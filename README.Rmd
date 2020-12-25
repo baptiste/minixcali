@@ -13,7 +13,14 @@ knitr::opts_chunk$set(
 )
 
 library(miniexcali)
-knitr::include_graphics('json/preview.png')
+# knitr::include_graphics('json/preview.png')
 ```
 
 ![preview](json/preview.png)
+
+## Usage
+
+```{r, include = TRUE, eval=FALSE}
+library(miniexcali)
+pdl_strip() # no argument here
+```
