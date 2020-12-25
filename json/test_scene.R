@@ -35,17 +35,20 @@ rs <- gly_glyph(type = c('rectangle','rectangle','rectangle','ellipse'),
                 width = .strip$width, height = .strip$height, 
                 attributes = lapply(seq_along(.strip$x), 
                                     function(ii)
-                  list(fillStyle = dplyr::case_when(ii==1 ~ "hachure",
-                                             ii==2 ~ "solid", 
+                  list(fillStyle = dplyr::case_when(ii==1 ~ "solid",
+                                             ii==2 ~ "hachure", 
                                              ii==3 ~ "solid", TRUE ~ "cross-hatch"),
                        strokeWidth = 2L)))
+
+rs[1,]$attributes[[1]] <- append(rs[1,]$attributes[[1]], 
+                                 list(backgroundColor = "#f7fdff"))
 
 rs[2,]$attributes[[1]] <- append(rs[2,]$attributes[[1]], 
                                  list(roughness=2))
 
 rs[3,]$attributes[[1]] <- append(rs[3,]$attributes[[1]], 
                                  list(roughness=1,
-                                      backgroundColor = '#fafafb'))
+                                      backgroundColor = "#f7fdff"))
 
 rs[4,]$attributes[[1]] <- append(rs[4,]$attributes[[1]], 
                                  list(roughness=0,angle=pi/8))
