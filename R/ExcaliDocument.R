@@ -65,31 +65,7 @@ ExcaliDoc <- R6::R6Class(
                 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 add_rectangle = function(...){
                   
-                  new_elem <- modifyList(list(
-                    x = 0L, 
-                    y = 0L, 
-                    width = 400L, 
-                    height = 300L, 
-                    angle = 0L, 
-                    strokeColor = "#495057", 
-                    backgroundColor = "#ced4da", 
-                    fillStyle = "hachure", 
-                    strokeWidth = 1L, 
-                    strokeStyle = "solid", 
-                    roughness = 1L, 
-                    opacity = 100L,  
-                    strokeSharpness = "sharp", 
-                    isDeleted = FALSE, 
-                    boundElementIds = NA), 
-                    list(...))
-                  
-                  new_elem$type = "rectangle"
-                  new_elem$groupIds = list()
-                  # hashing the element to make a unique ID
-                  new_elem$id =  digest::digest(new_elem, algo="md5")
-                  new_elem$seed = abs(sample(.Random.seed[-1], 1))
-                  new_elem$version = 32L # no idea
-                  new_elem$versionNonce = 784119031L # no idea
+                  new_elem <- g_rectangle(...)
                   
                   self$elements <- c(self$elements, list(new_elem))
                   invisible(self)
@@ -115,6 +91,40 @@ ExcaliDoc <- R6::R6Class(
   )
   
 )
+
+#' @param ... glyph attributes
+#' @export
+g_rectangle <- function(...){
+  
+  new_elem <- modifyList(list(
+    x = 0, 
+    y = 0, 
+    width = 400, 
+    height = 300, 
+    angle = 0, 
+    strokeColor = "#495057", 
+    backgroundColor = "#ced4da", 
+    fillStyle = "hachure", 
+    strokeWidth = 1, 
+    strokeStyle = "solid", 
+    roughness = 1L, 
+    opacity = 100L,  
+    strokeSharpness = "sharp", 
+    isDeleted = FALSE, 
+    boundElementIds = NA), 
+    list(...))
+  
+  new_elem$type = "rectangle"
+  new_elem$groupIds = list()
+  # hashing the element to make a unique ID
+  new_elem$id =  digest::digest(new_elem, algo="md5")
+  new_elem$seed = abs(sample(.Random.seed[-1], 1))
+  new_elem$version = 32L # no idea
+  new_elem$versionNonce = 784119031L # no idea
+  
+  new_elem
+}
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @description Remove child objects at the given indices

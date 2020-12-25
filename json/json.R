@@ -36,8 +36,11 @@ rs <- tribble(~x,~y,~width,~height,
               263.,   240,   400,    300)
 
 a <- Excali_doc()
-for(ii in 1:nrow(rs))
-  a$add_rectangle(x = rs$x[ii], y = rs$y[ii], 
-                  width = rs$width[ii], height = rs$height[ii])
+# for(ii in 1:nrow(rs))
+#   a$add_rectangle(x = rs$x[ii], y = rs$y[ii], 
+#                   width = rs$width[ii], height = rs$height[ii])
+
+library(purrr)
+invoke(a$add, pmap(rs, g_rectangle))
 
 a$export('strip.json')
