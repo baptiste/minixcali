@@ -1,7 +1,7 @@
 
 if (FALSE) {
   
-library(R6)
+  library(miniexcali)
   
   a <- Excali_doc()
   a$add(list(id = "eGTFBfkR25EPddNpfGZij", 
@@ -13,7 +13,7 @@ library(R6)
              angle = 0L, 
              strokeColor = "#000000", 
              backgroundColor = "#ced4da", 
-             fillStyle = "solid", 
+             fillStyle = "hachure", 
              strokeWidth = 1L, 
              strokeStyle = "solid", 
              roughness = 1L, 
@@ -26,6 +26,7 @@ library(R6)
              isDeleted = FALSE, 
              boundElementIds = NA))
   
+  a$add_rectangle()
   a$export('test.json')
   
 }
@@ -57,6 +58,44 @@ ExcaliDoc <- R6::R6Class(
                   
                 },
                 
+                #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                #' @description Add a rectangle to the scene
+                #'
+                #' @param ... glyph attributes
+                #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                add_rectangle = function(...){
+                  
+                  new_elem <- modifyList(list(
+                    x = 0L, 
+                    y = 0L, 
+                    width = 400L, 
+                    height = 300L, 
+                    angle = 0L, 
+                    strokeColor = "#495057", 
+                    backgroundColor = "#ced4da", 
+                    fillStyle = "hachure", 
+                    strokeWidth = 1L, 
+                    strokeStyle = "solid", 
+                    roughness = 1L, 
+                    opacity = 100L,  
+                    strokeSharpness = "sharp", 
+                    isDeleted = FALSE, 
+                    boundElementIds = NA), 
+                    list(...))
+                  
+                  new_elem$type = "rectangle"
+                  new_elem$groupIds = list()
+                  # hashing the element to make a unique ID
+                  new_elem$id =  digest::digest(new_elem, algo="md5")
+                  new_elem$seed = abs(sample(.Random.seed[-1], 1))
+                  new_elem$version = 32L # no idea
+                  new_elem$versionNonce = 784119031L # no idea
+                  
+                  self$elements <- c(self$elements, list(new_elem))
+                  invisible(self)
+                  
+                },
+                
                 export = function(file, ...){
                   
                   doc <- list(type = self$type, 
@@ -77,6 +116,12 @@ ExcaliDoc <- R6::R6Class(
   
 )
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @description Remove child objects at the given indices
+#'
+#' @export
+#' @param indices indices of the children to remove
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Excali_doc <- function(...) {
   ExcaliDoc$new(...)
 }
