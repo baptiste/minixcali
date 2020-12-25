@@ -5,7 +5,7 @@ library(tibble)
 library(tidyr) # v list-columns
 library(magrittr)
 
-gly_rect <- function(x, y, width, height, attributes = list()){
+gly_rectangle <- function(x, y, width, height, attributes = list()){
   tb <- tibble::tibble(x = x, y = y, width = width, height = height)
   tb$attributes <- attributes
   tb
@@ -18,10 +18,12 @@ ys <- vapply(j$elements, "[[",'y', FUN.VALUE = pi)
 ws <- vapply(j$elements, "[[",'width', FUN.VALUE = pi)
 hs <- vapply(j$elements, "[[",'height', FUN.VALUE = pi)
 
-rs <- gly_rect(x = xs, y = ys, width = ws, height = hs, 
+rs <- gly_rectangle(x = xs, y = ys, width = ws, height = hs, 
                attributes = lapply(seq_along(xs), function(x)
                  list(fillStyle = "hachure", 
                       strokeWidth = 1L)))
+rs[3,]$attributes[[1]] <- append(rs[3,]$attributes[[1]], 
+                                 list(backgroundColor = '#80FFFF'))
 str(rs)
 
 library(tidyr)
