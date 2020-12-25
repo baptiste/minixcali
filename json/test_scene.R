@@ -129,6 +129,7 @@ for(l in llet){
   new_let$attributes = list(list(strokeWidth = 1L,
                                  roughness=2L,
                                  strokeColor = col,
+                                 strokeSharpness= "round",
                                  backgroundColor = "#40c057",
                                  fillStyle = "cross-hatch", 
                                  points = xy))
@@ -168,6 +169,7 @@ for(l in .roberto){
   
   new_stroke$attributes = list(list(strokeWidth = 1L,
                                  roughness=0L,
+                                 strokeSharpness= "round",
                                  groups = c("roberto"),
                                  strokeColor = l$strokeColor,
                                  backgroundColor = l$backgroundColor,
@@ -191,6 +193,7 @@ for(l in .kevin){
   
   new_stroke$attributes = list(list(strokeWidth = 1L,
                                  roughness=0L,
+                                 strokeSharpness= "round",
                                  groups = c("kevin"),
                                  strokeColor = l$strokeColor,
                                  backgroundColor = l$backgroundColor,

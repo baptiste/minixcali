@@ -30,6 +30,7 @@ pdl_strip <- function(){
     
     new_stroke$attributes = list(list(strokeWidth = 1L,
                                       roughness=0L,
+                                      strokeSharpness= "round",
                                       groups = c("roberto"),
                                       strokeColor = l$strokeColor,
                                       backgroundColor = l$backgroundColor,
@@ -52,6 +53,7 @@ pdl_strip <- function(){
     
     new_stroke$attributes = list(list(strokeWidth = 1L,
                                       roughness=0L,
+                                      strokeSharpness= "round",
                                       groups = c("kevin"),
                                       strokeColor = l$strokeColor,
                                       backgroundColor = l$backgroundColor,
