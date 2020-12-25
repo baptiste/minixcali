@@ -3,3 +3,4 @@
 export(Excali_doc)
 export(g_element)
 export(g_rectangle)
+export(pdl_strip)
