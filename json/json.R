@@ -32,9 +32,19 @@ rs <- gly_glyph(type = c('rectangle','rectangle','rectangle','ellipse'),
                 width = ws, height = hs, 
                 attributes = lapply(seq_along(xs), function(ii)
                   list(fillStyle = if(ii%%2) "hachure" else "solid", 
-                       strokeWidth = 1L)))
+                       strokeWidth = 2L)))
+
+rs[2,]$attributes[[1]] <- append(rs[2,]$attributes[[1]], 
+                                 list(roughness=2))
+
 rs[3,]$attributes[[1]] <- append(rs[3,]$attributes[[1]], 
-                                 list(backgroundColor = '#80FFFF'))
+                                 list(roughness=1,
+                                      backgroundColor = '#80FFFF'))
+
+
+rs[4,]$attributes[[1]] <- append(rs[4,]$attributes[[1]], 
+                                 list(roughness=0,angle=pi/4))
+
 str(rs)
 
 library(tidyr)
@@ -129,14 +139,14 @@ att <- tree_g %>% unnest_wider(attributes)
 a$add(invoke(miniexcali::g_element, att))
 
 pts <- gly_glyph(type = 'ellipse',
-                x = runif(20, -140, 460) + 891, 
-                y = runif(20, -400, 200) + 340.5000000000001, 
-                width = runif(20, 10, 20), 
-                height = runif(20, 10, 20), 
-                attributes = lapply(1:20, function(ii)
+                x = tree[,1] + 891, 
+                y = tree[,2] + 340.5000000000001, 
+                width = runif(nrow(tree), 10, 20), 
+                height = runif(nrow(tree), 10, 20), 
+                attributes = lapply(1:nrow(tree), function(ii)
                   list(fillStyle = if(ii%%2) "hachure" else "solid", 
                        strokeWidth = 1L,
-                       backgroundColor = sample(size = 1, hcl(seq(0,100))))))
+                       backgroundColor = sample(size = 1, hcl(seq(0,360))))))
 
 str(pts)
 
