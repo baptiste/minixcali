@@ -164,12 +164,11 @@ str(.kevin) # stored coords in the package under data/
 d <- Excali_doc()
 
 for(l in .kevin){
-  new_stroke <- minixcali:::gly_glyph(type = 'line',  
+  new_stroke <- tibble::tibble(type = 'line',  
                           x=l$x,
                           y=l$y,
                           width=l$width,
-                          height=l$height,
-                          attributes=list(list(roughness=1)))
+                          height=l$height)
   
   new_stroke$attributes = list(list(strokeWidth = 1L,
                                  roughness=0L,
