@@ -1,6 +1,6 @@
 
 
-library(miniexcali)
+library(minixcali)
 library(jsonlite)
 library(tibble)
 library(tidyr) # v list-columns
@@ -38,7 +38,7 @@ rs[4,]$attributes[[1]] <- append(rs[4,]$attributes[[1]],
 a <- Excali_doc()
 
 att <- rs %>% unnest_wider(attributes)
-invoke(a$add, pmap(att, miniexcali::g_element))
+invoke(a$add, pmap(att, minixcali::g_element))
 
 a$export('group.json')
 

@@ -15,7 +15,7 @@ pdl_strip <- function(){
   a <- Excali_doc()
   
   att <- rs %>% unnest_wider(attributes)
-  invoke(a$add, pmap(att, miniexcali::g_element))
+  invoke(a$add, pmap(att, minixcali::g_element))
   
   
   ## add kevin and roberto
@@ -38,7 +38,7 @@ pdl_strip <- function(){
                                       points = l$points))
     
     att <- new_stroke %>% unnest_wider(attributes)
-    a$add(invoke(miniexcali::g_element, att))
+    a$add(invoke(minixcali::g_element, att))
     
   }
   
@@ -61,7 +61,7 @@ pdl_strip <- function(){
                                       points = l$points))
     
     att <- new_stroke %>% unnest_wider(attributes)
-    a$add(invoke(miniexcali::g_element, att))
+    a$add(invoke(minixcali::g_element, att))
     
   }
   

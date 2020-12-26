@@ -1,38 +1,6 @@
 
-if (FALSE) {
-  
-  library(miniexcali)
-  
-  a <- Excali_doc()
-  a$add(list(id = "eGTFBfkR25EPddNpfGZij", 
-             type = "rectangle", 
-             x = -39L, 
-             y = 45L, 
-             width = 376L, 
-             height = 232L, 
-             angle = 0L, 
-             strokeColor = "#000000", 
-             backgroundColor = "#ced4da", 
-             fillStyle = "hachure", 
-             strokeWidth = 1L, 
-             strokeStyle = "solid", 
-             roughness = 1L, 
-             opacity = 80L, 
-             groupIds = list(list()), 
-             strokeSharpness = "sharp", 
-             seed = 862063609L, 
-             version = 32L, 
-             versionNonce = 784119031L, 
-             isDeleted = FALSE, 
-             boundElementIds = NA))
-  
-  a$add_rectangle()
-  a$export('test.json')
-  
-}
-
-ExcaliDoc <- R6::R6Class(
-  "ExcaliDoc",
+ExcaliDocument <- R6::R6Class(
+  "ExcaliDocument",
   
   public = list(type = NULL, 
                 version = NULL, 
@@ -44,18 +12,11 @@ ExcaliDoc <- R6::R6Class(
                   
                   self$type   <- "excalidraw"
                   self$version <- 2L
-                  self$source  <- "https://excalidraw.com"
+                  self$source  <- "minixcali"
                   self$appState <- list(viewBackgroundColor = "#ffffff", 
                                         gridSize = NA)
                   
                   invisible(self)
-                },
-                
-                add = function(...){
-                  
-                  self$elements <- c(self$elements, list(...))
-                  invisible(self)
-                  
                 },
                 
                 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,11 +24,9 @@ ExcaliDoc <- R6::R6Class(
                 #'
                 #' @param ... glyph attributes
                 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                add_rectangle = function(...){
+                add = function(...){
                   
-                  new_elem <- g_rectangle(...)
-                  
-                  self$elements <- c(self$elements, list(new_elem))
+                  self$elements <- c(self$elements, list(...))
                   invisible(self)
                   
                 },
@@ -91,43 +50,6 @@ ExcaliDoc <- R6::R6Class(
   )
   
 )
-
-#' @param ... glyph attributes
-#' @export
-g_rectangle <- function(...){
-  
-  new_props <- list(...)
-  new_props[is.na(new_props)] <- NULL # remove NAs
-  
-  new_elem <- modifyList(list(
-    x = 0, 
-    y = 0, 
-    width = 400, 
-    height = 300, 
-    angle = 0, 
-    strokeColor = "#495057", 
-    backgroundColor = "#ced4da", 
-    fillStyle = "hachure", 
-    strokeWidth = 1, 
-    strokeStyle = "solid", 
-    roughness = 1L, 
-    opacity = 100L,  
-    strokeSharpness = "sharp", 
-    isDeleted = FALSE, 
-    groupIds = list(),
-    boundElementIds = NA), 
-    new_props)
-  
-  new_elem$type = "rectangle"
-  # hashing the element to make a unique ID
-  new_elem$id =  digest::digest(new_elem, algo="md5")
-  new_elem$seed = abs(sample(.Random.seed[-1], 1))
-  new_elem$version = 32L # no idea
-  new_elem$versionNonce = 784119031L # no idea
-  
-  new_elem
-}
-
 
 #' @param ... glyph attributes
 #' @export
@@ -179,5 +101,5 @@ g_element <- function(...){
 #' @param indices indices of the children to remove
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Excali_doc <- function(...) {
-  ExcaliDoc$new(...)
+  ExcaliDocument$new(...)
 }

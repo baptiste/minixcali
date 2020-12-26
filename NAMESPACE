@@ -2,5 +2,6 @@
 
 export(Excali_doc)
 export(g_element)
-export(g_rectangle)
+export(ggp)
 export(pdl_strip)
+importFrom(egg,expose_layout)

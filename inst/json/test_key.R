@@ -1,6 +1,6 @@
 
 
-library(miniexcali)
+library(minixcali)
 library(jsonlite)
 library(tibble)
 library(tidyr) # v list-columns
@@ -44,7 +44,7 @@ att2$verticalAlign <- "top"
 att2$baseline <- 18
 
 a <- Excali_doc()
-invoke(a$add, pmap(att, miniexcali::g_element))
-invoke(a$add, pmap(att2, miniexcali::g_element))
+invoke(a$add, pmap(att, minixcali::g_element))
+invoke(a$add, pmap(att2, minixcali::g_element))
 
 a$export('key.json')

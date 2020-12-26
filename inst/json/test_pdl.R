@@ -1,6 +1,6 @@
 
 
-library(miniexcali)
+library(minixcali)
 library(jsonlite)
 library(tibble)
 library(tidyr) # v list-columns
@@ -42,7 +42,7 @@ for(l in .roberto[1]){
                                  points = l$points))
   
   att <- new_stroke %>% unnest_wider(attributes)
-  a$add(invoke(miniexcali::g_element, att))
+  a$add(invoke(minixcali::g_element, att))
   
 }
 

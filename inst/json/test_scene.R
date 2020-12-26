@@ -1,6 +1,6 @@
 
 
-library(miniexcali)
+library(minixcali)
 library(jsonlite)
 library(tibble)
 library(tidyr) # v list-columns
@@ -66,7 +66,7 @@ a <- Excali_doc()
 
 
 att <- rs %>% unnest_wider(attributes)
-invoke(a$add, pmap(att, miniexcali::g_element))
+invoke(a$add, pmap(att, minixcali::g_element))
 
 
 ## grab coords of manually drawn tree
@@ -75,7 +75,7 @@ invoke(a$add, pmap(att, miniexcali::g_element))
 # dput(as.numeric(do.call(rbind, dput(j$elements[[1]]$points))))
 
 
-tree <- miniexcali::.tree
+tree <- minixcali::.tree
 tree_g <- gly_glyph(type = 'draw',  
                     x=891,
                     y=340.5000000000001,
@@ -89,7 +89,7 @@ tree_g$attributes = list(list(
   fillStyle = "cross-hatch", points = tree))
 
 att <- tree_g %>% unnest_wider(attributes)
-a$add(invoke(miniexcali::g_element, att))
+a$add(invoke(minixcali::g_element, att))
 
 ## add garlands
 pts <- gly_glyph(type = 'ellipse',
@@ -104,7 +104,7 @@ pts <- gly_glyph(type = 'ellipse',
 
 
 invoke(a$add, pmap(pts %>% unnest_wider(attributes),
-                   miniexcali::g_element))
+                   minixcali::g_element))
 
 
 ## get nodes of text shapes
@@ -138,7 +138,7 @@ for(l in llet){
                                  points = xy))
   
   att <- new_let %>% unnest_wider(attributes)
-  a$add(invoke(miniexcali::g_element, att))
+  a$add(invoke(minixcali::g_element, att))
   
   r <- runif(nrow(xy), 5, 15)
   pts <- gly_glyph(type = 'ellipse',
@@ -153,7 +153,7 @@ for(l in llet){
   
 
   invoke(a$add, pmap(pts %>% unnest_wider(attributes),
-                     miniexcali::g_element))
+                     minixcali::g_element))
 
   
 }
@@ -180,7 +180,7 @@ for(l in .roberto){
                                  points = l$points))
   
   att <- new_stroke %>% unnest_wider(attributes)
-  a$add(invoke(miniexcali::g_element, att))
+  a$add(invoke(minixcali::g_element, att))
   
 }
 
@@ -204,7 +204,7 @@ for(l in .kevin){
                                  points = l$points))
   
   att <- new_stroke %>% unnest_wider(attributes)
-  a$add(invoke(miniexcali::g_element, att))
+  a$add(invoke(minixcali::g_element, att))
   
 }
 

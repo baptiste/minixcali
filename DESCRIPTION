@@ -1,4 +1,4 @@
-Package: miniexcali
+Package: minixcali
 Type: Package
 Title: Excalidraw Document Builder
 Version: 0.0.1
@@ -9,21 +9,19 @@ Description: Build Excalidraw documents with R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/baptiste/miniexcali
+URL: https://github.com/baptiste/minixcali
 Imports:
     R6,
     jsonlite
 Depends:    
     tibble,
     tidyr,
-    magrittr,
-    purrr,
-    tidyr
+    purrr
 Suggests: 
     knitr,
+    magrittr,
     rmarkdown,
     xml2,
-    purrr,
     htmltools
 VignetteBuilder: knitr
 RoxygenNote: 7.1.0

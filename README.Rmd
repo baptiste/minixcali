@@ -12,17 +12,17 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-library(miniexcali)
+library(minixcali)
 # knitr::include_graphics('json/preview.png')
 ```
 
-![preview](json/preview.png)
+![preview](inst/json/preview.png)
 
 https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ
 
 ## Usage
 
 ```{r, include = TRUE, eval=FALSE}
-library(miniexcali)
+library(minixcali)
 pdl_strip() # no argument here
 ```

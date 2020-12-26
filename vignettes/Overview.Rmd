@@ -1,0 +1,97 @@
+---
+title: "Overview of the minixcali package"
+author: "Baptiste Auguié"
+date: '`r Sys.Date()`'
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Overview of the minixcali package}
+  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette:
+  toc: true
+  toc_depth: 3
+---
+
+```{r setup, echo=FALSE, results='hide', message=FALSE}
+library(minixcali)
+library(knitr)
+opts_chunk$set(message = FALSE,
+fig.width = 7,
+fig.height = 3)
+```
+
+## The Excalidraw format
+
+Excalidraw can import and export its scenes in json; the format consists of 4 top-level entries, of which the important one is `elements`, which is an array containing the description of each basic glyph in the scene.
+
+```
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "type": "rectangle",
+      "fillStyle": "solid",
+      [...]
+      "groupIds": []
+    },
+    {
+      "type": "rectangle",
+      "fillStyle": "solid",
+      [...]
+      "groupIds": []
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  }
+}
+```
+  
+Note that there doesn't appear to be a device size / viewport / viewbox. I'm also unsure what the units are; looking at the SVG export it seems to be the same default "px", i.e. 1/96th of an inch, i.e. about a quarter of a mm.
+
+## Elements
+
+- "type": "rectangle" or "ellipse" or "draw" or "text"
+
+Most attributes are pretty straight-forward,
+
+- "fillStyle": "solid" or "hatch" or "cross-hatch"
+- "strokeWidth": 1 or 2 or 4
+- "strokeStyle": "solid" or "dashed" or "dotted"
+- "roughness": 0 or 1 or 2 # degree of wiggliness
+- "opacity": 0 to 100
+- "angle": in radians
+- "x": -156 # the origin appears to be the centre of the page?
+- "y": -80  # units seem more or less like SVG's px
+- "strokeColor": "#000000"
+- "backgroundColor": "#ced4da"
+- "width": 400 
+- "height": 300
+- "strokeSharpness": "sharp"
+
+The following are for text, but it doesn't seem to hurt if irrelevant parameters are passed to another shape type,
+
+- "text": "this is text"
+- "fontSize": 36
+- "fontFamily": 1
+- "textAlign": "left"
+- "verticalAlign": "top"
+- "baseline": 3
+
+Each glyph is assigned some identification,
+
+- "seed": 233882977 # to generate unique random variations
+- "id": "3HjMtdwNS5YZdRqmv3BFM" # unique ID, e.g. md5 hash of object
+- "groupIds": [] # array of strings indicating glyph groupings
+  
+It's unclear to me what the following keywords refer to, but it doesn't seem to matter so far,
+
+- "boundElementIds": []
+- "version": 160
+- "versionNonce": 1571380943
+- "isDeleted": false
+
+
