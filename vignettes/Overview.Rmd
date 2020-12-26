@@ -12,18 +12,22 @@ output:
   toc_depth: 3
 ---
 
-```{r setup, echo=FALSE, results='hide', message=FALSE}
+```{r setup, echo=FALSE, results='hide', message=FALSE,warning=FALSE}
 library(minixcali)
 library(purrr)
 library(knitr)
-opts_chunk$set(message = FALSE,
+opts_chunk$set(message = FALSE, 
+               warning=FALSE,
                fig.width = 7,
-               fig.height = 3)
+               fig.height = 3, 
+               out.width='100%')
+
+knitr::include_graphics('overview.png')
 ```
 
 ## The Excalidraw format
 
-Excalidraw can import and export its scenes in json; the format consists of 4 top-level entries, of which the important one is `elements`, which is an array containing the description of each basic glyph in the scene.
+Excalidraw can import and export its scenes in json; the format consists of 5 top-level entries, of which the important one is `elements`, which is an array containing the description of each basic glyph in the scene.
 
 ```
 {
@@ -145,7 +149,7 @@ str(d$elements)
 
 We can the export the full tree to json and open it in Excalidraw,
 
-```{r export, out.width="100%"}
+```{r export, out.width="100%", echo=1}
 d$export(file='testing.json')
 knitr::include_graphics('testing.png')
 ```
@@ -158,7 +162,7 @@ The drawing may be edited at https://excalidraw.com/#json=5181621544157184,h3q8W
 
 Say we have inherited some (x,y) coordinates representing a polygon from a drawing program; we can insert them into the `points` attribute and from there generate the scene as above. It is also possible to group multiple paths by giving them a common `group` attribute, as illustrated below. The resulting group can then be edited (moved, rotated, attribute changes, etc.) as one object in Excalidraw.
 
-```{r kevin, out.width="40%", fig.align='center'}
+```{r kevin}
 str(.kevin) # stored coords in the package under data/
 
 d <- Excali_doc()
@@ -177,9 +181,12 @@ for(l in .kevin){
 }
 
 d$export('drawing.json')
-knitr::include_graphics('kevin.png')
 ```
 
 Drawing at https://excalidraw.com/#json=5903088405708800,72BcP2Ry6NHWbHEUpidg9w
+
+```{r kevindrawing, out.width="40%", fig.align='center', echo=FALSE}
+knitr::include_graphics('kevin.png')
+```
 
 
