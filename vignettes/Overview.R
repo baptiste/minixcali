@@ -29,12 +29,17 @@ opts_chunk$set(message = FALSE,
 
 ## ----iterate, eval=TRUE-------------------------------------------------------
 a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
-             -156 ,   -80,   400,    300, 0, "#f7fdff",
-             262 ,   -80,   400,    300, 1, "#f7fdff",
-             -156 ,   240,   400,    300, 2, "#f7fdff",
-             263.,   240,   400,    300, 2, "#f7fdff")
+             -300 ,   -80,   300,    300, 0, "#ced4da",
+             10 ,   -80,   300,    300, 1, "#ced4da",
+             320 ,   -80,   300,    300, 2, "#ced4da")
+
+a$strokeWidth <- 2
 
 d <- Excali_doc()
 invoke(d$add, pmap(a, minixcali::g_element))
 str(d$elements)
+
+## ----export, out.width="100%"-------------------------------------------------
+d$export(file='testing.json')
+knitr::include_graphics('testing.png')
 
