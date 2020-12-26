@@ -1,3 +1,5 @@
+set.seed(123)
+seeds <- .Random.seed[-1]
 
 ExcaliDocument <- R6::R6Class(
   "ExcaliDocument",
@@ -87,7 +89,7 @@ g_element <- function(...){
   # print(new_elem$groupIds)
   # hashing the element to make a unique ID
   new_elem$id =  digest::digest(new_elem, algo="md5")
-  new_elem$seed = abs(sample(.Random.seed[-1], 1))
+  new_elem$seed = abs(sample(seeds, 1))
   new_elem$version = 32L # no idea
   new_elem$versionNonce = 784119031L # no idea
   

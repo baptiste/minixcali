@@ -14,10 +14,11 @@ output:
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE}
 library(minixcali)
+library(purrr)
 library(knitr)
 opts_chunk$set(message = FALSE,
-fig.width = 7,
-fig.height = 3)
+               fig.width = 7,
+               fig.height = 3)
 ```
 
 ## The Excalidraw format
@@ -26,30 +27,30 @@ Excalidraw can import and export its scenes in json; the format consists of 4 to
 
 ```
 {
-  "type": "excalidraw",
-  "version": 2,
-  "source": "https://excalidraw.com",
-  "elements": [
-    {
-      "type": "rectangle",
-      "fillStyle": "solid",
-      [...]
-      "groupIds": []
-    },
-    {
-      "type": "rectangle",
-      "fillStyle": "solid",
-      [...]
-      "groupIds": []
-    }
-  ],
-  "appState": {
-    "viewBackgroundColor": "#ffffff",
-    "gridSize": null
-  }
+"type": "excalidraw",
+"version": 2,
+"source": "https://excalidraw.com",
+"elements": [
+{
+"type": "rectangle",
+"fillStyle": "solid",
+[...]
+"groupIds": []
+},
+{
+"type": "rectangle",
+"fillStyle": "solid",
+[...]
+"groupIds": []
+}
+],
+"appState": {
+"viewBackgroundColor": "#ffffff",
+"gridSize": null
+}
 }
 ```
-  
+
 Note that there doesn't appear to be a device size / viewport / viewbox. I'm also unsure what the units are; looking at the SVG export it seems to be the same default "px", i.e. 1/96th of an inch, i.e. about a quarter of a mm.
 
 ## Elements
@@ -86,7 +87,7 @@ Each glyph is assigned some identification,
 - "seed": 233882977 # to generate unique random variations
 - "id": "3HjMtdwNS5YZdRqmv3BFM" # unique ID, e.g. md5 hash of object
 - "groupIds": [] # array of strings indicating glyph groupings
-  
+
 It's unclear to me what the following keywords refer to, but it doesn't seem to matter so far,
 
 - "boundElementIds": []
@@ -94,4 +95,57 @@ It's unclear to me what the following keywords refer to, but it doesn't seem to 
 - "versionNonce": 1571380943
 - "isDeleted": false
 
+## Creating a simple scene
 
+minixcali defines a very simple R6 class `ExcaliDocument` which initialises the 4 top-level nodes of the json object. Two methods are defined,
+
+- `$add`, to add glyphs to the `elements` field
+- `$export`, to save the object to a json file (via `jsonlite`)
+
+The `$add` method simply appends glyph(s) to the list of elements. Each glyph needs to be a well-formed list of attributes, such as 
+
+```{r, eval=FALSE}
+list(type = "rectangle", 
+     x = -407.242554, y = 0, 
+     width = 44, height = 44, 
+     angle = 0, 
+     strokeColor = "#495057", 
+     backgroundColor = "#ced4da", 
+     fillStyle = "hachure", 
+     strokeWidth = 1, 
+     strokeStyle = "solid", 
+     roughness = 1L, 
+     opacity = 100L, 
+     strokeSharpness = "sharp", 
+     isDeleted = FALSE, 
+     groupIds = list(), 
+     boundElementIds = NA, 
+     id = "2732dc14872d3709d5978813d7bf550c", 
+     seed = 1260353516L, 
+     version = 32L, 
+     versionNonce = 784119031L)
+```
+
+`g_element = function(...)` is a generic convenience function to create such lists by passing only those few parameters one wants to modify from the default values of a generic element.
+
+To create multiple shapes at once it can be useful to create a data.frame of attributes, and use `purrr` function to iterate over each row,
+
+```{r iterate, eval=TRUE}
+a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
+             -300 ,   -80,   300,    300, 0, "#ced4da",
+             10 ,   -80,   300,    300, 1, "#ced4da",
+             320 ,   -80,   300,    300, 2, "#ced4da")
+
+a$strokeWidth <- 2
+
+d <- Excali_doc()
+invoke(d$add, pmap(a, minixcali::g_element))
+str(d$elements)
+```
+
+We can the export the full tree to json and open it in Excalidraw,
+
+```{r export, out.width="100%"}
+d$export(file='testing.json')
+knitr::include_graphics('testing.png')
+```
