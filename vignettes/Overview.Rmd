@@ -149,3 +149,5 @@ We can the export the full tree to json and open it in Excalidraw,
 d$export(file='testing.json')
 knitr::include_graphics('testing.png')
 ```
+
+The drawing may be edited at https://excalidraw.com/#json=5181621544157184,h3q8WL5-2HPBFjkjQeu5RA
