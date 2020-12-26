@@ -151,3 +151,45 @@ knitr::include_graphics('testing.png')
 ```
 
 The drawing may be edited at https://excalidraw.com/#json=5181621544157184,h3q8WL5-2HPBFjkjQeu5RA
+
+## Lines 
+
+`line` and `draw` elements (not sure what the difference is, if any?) require a `points` attribute that encodes (x,y) node coordinates in an array structure. This messes a bit with the `tibble` approach above, probably requiring an understanding of list-columns. Failing that, I've sprinkled around random `list()` wrappers until things kind of worked.
+
+Say we have inherited some (x,y) coordinates representing a polygon from a drawing program; we can insert them into the `points` attribute and from there generate the scene as above. It is also possible to group multiple paths by giving them a common `group` attribute, as illustrated below. The resulting group can then be edited (moved, rotated, attribute changes, etc.) as one object in Excalidraw.
+
+```{r kevin, out.width="40%", fig.align='center'}
+str(.kevin) # stored coords in the package under data/
+
+d <- Excali_doc()
+
+for(l in .kevin){
+  new_stroke <- minixcali:::gly_glyph(type = 'line',  
+                          x=l$x,
+                          y=l$y,
+                          width=l$width,
+                          height=l$height,
+                          attributes=list(list(roughness=1)))
+  
+  new_stroke$attributes = list(list(strokeWidth = 1L,
+                                 roughness=0L,
+                                 strokeSharpness= "round",
+                                 groups = c("kevin"),
+                                 strokeColor = l$strokeColor,
+                                 backgroundColor = l$backgroundColor,
+                                 fillStyle = "solid", 
+                                 points = l$points))
+  
+  att <- new_stroke %>% unnest_wider(attributes)
+  
+  d$add(invoke(minixcali::g_element, att))
+  
+}
+
+d$export('drawing.json')
+knitr::include_graphics('kevin.png')
+```
+
+Drawing at https://excalidraw.com/#json=5903088405708800,72BcP2Ry6NHWbHEUpidg9w
+
+
