@@ -1,10 +1,14 @@
-## ----setup, echo=FALSE, results='hide', message=FALSE-------------------------
+## ----setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'----------
 library(minixcali)
 library(purrr)
 library(knitr)
-opts_chunk$set(message = FALSE,
+opts_chunk$set(message = FALSE, 
+               warning=FALSE,
                fig.width = 7,
-               fig.height = 3)
+               fig.height = 3, 
+               out.width='100%')
+
+knitr::include_graphics('overview.png')
 
 ## ---- eval=FALSE--------------------------------------------------------------
 #  list(type = "rectangle",
@@ -39,11 +43,11 @@ d <- Excali_doc()
 invoke(d$add, pmap(a, minixcali::g_element))
 str(d$elements)
 
-## ----export, out.width="100%"-------------------------------------------------
+## ----export, out.width="100%", echo=1-----------------------------------------
 d$export(file='testing.json')
 knitr::include_graphics('testing.png')
 
-## ----kevin, out.width="40%", fig.align='center'-------------------------------
+## ----kevin--------------------------------------------------------------------
 str(.kevin) # stored coords in the package under data/
 
 d <- Excali_doc()
@@ -62,5 +66,7 @@ for(l in .kevin){
 }
 
 d$export('drawing.json')
+
+## ----kevindrawing, out.width="40%", fig.align='center', echo=FALSE------------
 knitr::include_graphics('kevin.png')
 
