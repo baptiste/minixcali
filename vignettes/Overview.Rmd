@@ -164,24 +164,15 @@ str(.kevin) # stored coords in the package under data/
 d <- Excali_doc()
 
 for(l in .kevin){
-  new_stroke <- tibble::tibble(type = 'line',  
-                          x=l$x,
-                          y=l$y,
-                          width=l$width,
-                          height=l$height)
+  shape <- c(l, list(type='draw',
+                     strokeWidth = 1L,
+                     roughness=0L,
+                     strokeSharpness= "round",
+                     groups = c("kevin"),
+                     fillStyle = "solid"))
+  shape$points <- list(l$points) # needs extra layer
   
-  new_stroke$attributes = list(list(strokeWidth = 1L,
-                                 roughness=0L,
-                                 strokeSharpness= "round",
-                                 groups = c("kevin"),
-                                 strokeColor = l$strokeColor,
-                                 backgroundColor = l$backgroundColor,
-                                 fillStyle = "solid", 
-                                 points = l$points))
-  
-  att <- new_stroke %>% unnest_wider(attributes)
-  
-  d$add(invoke(minixcali::g_element, att))
+  d$add(invoke(minixcali::g_element, shape))
   
 }
 
