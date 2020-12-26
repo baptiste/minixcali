@@ -67,17 +67,17 @@ Most attributes are pretty straight-forward,
 - "angle": in radians
 - "x": -156 # the origin appears to be the centre of the page?
 - "y": -80  # units seem more or less like SVG's px
-- "strokeColor": "#000000"
+- "strokeColor": "#000000" # html codes
 - "backgroundColor": "#ced4da"
 - "width": 400 
 - "height": 300
-- "strokeSharpness": "sharp"
+- "strokeSharpness": "sharp" or "round"
 
 The following are for text, but it doesn't seem to hurt if irrelevant parameters are passed to another shape type,
 
 - "text": "this is text"
 - "fontSize": 36
-- "fontFamily": 1
+- "fontFamily": 1 # "FG_Virgil.woff2" or 2 for "Cascadia.woff2" 
 - "textAlign": "left"
 - "verticalAlign": "top"
 - "baseline": 3
@@ -97,7 +97,7 @@ It's unclear to me what the following keywords refer to, but it doesn't seem to 
 
 ## Creating a simple scene
 
-minixcali defines a very simple R6 class `ExcaliDocument` which initialises the 4 top-level nodes of the json object. Two methods are defined,
+`minixcali` defines a very basic R6 class `ExcaliDocument` which initialises the 4 top-level nodes of the json object. Two methods are defined,
 
 - `$add`, to add glyphs to the `elements` field
 - `$export`, to save the object to a json file (via `jsonlite`)
