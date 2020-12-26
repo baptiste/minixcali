@@ -10,6 +10,7 @@ output:
   rmarkdown::html_vignette:
   toc: true
   toc_depth: 3
+  self_contained: false
 ---
 
 ```{r setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'}
@@ -101,7 +102,7 @@ It's unclear to me what the following keywords refer to, but it doesn't seem to 
 
 ## Creating a simple scene
 
-`minixcali` defines a very basic R6 class `ExcaliDocument` which initialises the 4 top-level nodes of the json object. Two methods are defined,
+`minixcali` defines a very basic R6 class `ExcaliDocument` which initialises the 5 top-level nodes of the json object. Two methods are defined,
 
 - `$add`, to add glyphs to the `elements` field
 - `$export`, to save the object to a json file (via `jsonlite`)
@@ -132,7 +133,7 @@ list(type = "rectangle",
 
 `g_element = function(...)` is a generic convenience function to create such lists by passing only those few parameters one wants to modify from the default values of a generic element.
 
-To create multiple shapes at once it can be useful to create a data.frame of attributes, and use `purrr` function to iterate over each row,
+To create multiple shapes at once it can be useful to create a data.frame of attributes, and use `purrr` functions to iterate over each row,
 
 ```{r iterate, eval=TRUE}
 a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
