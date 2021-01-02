@@ -97,9 +97,102 @@
 
     
     
-<div id="the-svgchop-package" class="section level2">
+<p>As an experiment we’ll try to import the following svg output from <a href="https://github.com/fogleman/ln"><code>ln</code>, a cool go program to create 3D line drawings for pen plotters</a>.</p>
+<p><img src="fun.svg" width="100%" style="display: block; margin: auto;"></p>
+<p>The SVG file contains many polylines such as</p>
+<pre><code>&lt;svg width="954" height="500" version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;g transform="translate(0,500) scale(1,-1)"&gt;
+&lt;polyline stroke="black" fill="none" points="465.28,191.39 465.93,191.59 465.93,191.59 466.57,191.78 466.57,191.78 467.22,191.98 467.22,191.98 467.87,...</code></pre>
+<div id="getting-point-coordinates" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-svgchop-package" class="anchor"></a>The svgchop package</h2>
+<a href="#getting-point-coordinates" class="anchor"></a>Getting point coordinates</h2>
+<p>The <a href="https://github.com/brodieG/svgchop">svgchop</a> package interprets a subset of the SVG standard and breaks down objects (polygons, paths, etc.) into linear paths with simple (x, y) coordinates, which can then feed to the Excalidraw <code>draw</code> element.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># remotes::install_github('brodieG/svgchop')</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/brodieG/svgchop">svgchop</a></span><span class="op">)</span>
+
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/svgchop/man/chop.html">chop</a></span><span class="op">(</span><span class="st">'fun.svg'</span>, steps <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">b</span>, max.level <span class="op">=</span> <span class="fl">1</span>, 
+    give.attr <span class="op">=</span> <span class="cn">FALSE</span>, list.len <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<pre><code>## List of 185
+##  $ polyline: num [1:2, 1:78] 465 309 466 308 466 ...
+##  $ polyline: num [1:2, 1:1684] 418 298 418 297 418 ...
+##  $ polyline: num [1:2, 1:84] 464 309 465 308 465 ...
+##   [list output truncated]</code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">b</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<pre><code>##  num [1:2, 1:78] 465 309 466 308 466 ...
+##  - attr(*, "closed")= logi FALSE
+##  - attr(*, "xml_attrs")=List of 3
+##   ..$ stroke: chr "black"
+##   ..$ fill  : chr "none"
+##   ..$ points: chr "465.28,191.39 465.93,191.59 465.93,191.59 466.57,191.78 466.57,191.78 467.22,191.98 467.22,191.98 467.87,192.18"| __truncated__
+##  - attr(*, "xml_name")= chr "polyline"
+##  - attr(*, "style-computed")=List of 10
+##   ..$ fill          : chr NA
+##   ..$ stroke        : chr "#000000"
+##   ..$ fill-opacity  : num 1
+##   ..$ fill-rule     : 'default' chr "nonzero"
+##   ..$ stroke-width  : num 1
+##   .. ..- attr(*, "unit")= chr ""
+##   ..$ stroke-opacity: num 1
+##   ..$ stop-color    : 'default' chr "#000000"
+##   ..$ stop-opacity  : 'default' chr "1"
+##   ..$ clip-path     : chr NA
+##   ..$ clip-rule     : chr NA
+##  - attr(*, "transform-computed")=List of 2
+##   ..$ mx  : num [1:3, 1:3] 1 0 0 0 -1 0 0 500 1
+##   ..$ cmds:List of 3
+##   .. ..$ : chr(0) 
+##   .. ..$ : chr [1:2] "translate(0 500)" "scale(1 -1)"
+##   .. ..$ : chr(0) 
+##   ..- attr(*, "class")= chr "trans"
+##  - attr(*, "extents")=List of 2
+##   ..$ x: num [1:2] 465 491
+##   ..$ y: num [1:2] 307 309</code></pre>
+<p>At this step it’s useful to check that the output is a list of polygon paths; some SVG files can be more complex and return a different structure, e.g. nested lists of grouped elements. Here we can simply iterate over the list of paths and draw each one.</p>
+<p>The only trick worth noting is that the (x,y) position should correspond to the bottom-left of the path, and the point coordinates are then relative to this origin. It can often be useful to give a general scaling factor between the original SVG coordinates and the Excalidraw scene (not necessarily using the same units).</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span>
+
+<span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/hcl.html">hcl</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">360</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">scale</span> <span class="op">&lt;-</span> <span class="fl">0.5</span>
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">ii</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">col</span> <span class="op">&lt;-</span> <span class="va">cols</span><span class="op">[</span><span class="va">ii</span><span class="op">]</span>
+  <span class="va">s</span> <span class="op">&lt;-</span> <span class="va">b</span><span class="op">[[</span><span class="va">ii</span><span class="op">]</span><span class="op">]</span>
+  
+  <span class="va">r_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">s</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span>
+  <span class="va">r_y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">s</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">)</span>
+  
+  <span class="va">m</span> <span class="op">&lt;-</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">s</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span> <span class="op">-</span> <span class="va">r_x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, 
+                     <span class="va">s</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span> <span class="op">-</span> <span class="va">r_y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+  
+  <span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xkd_draw.html">xkd_draw</a></span><span class="op">(</span>
+    x <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="va">r_x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
+    y <span class="op">=</span>  <span class="va">scale</span> <span class="op">*</span> <span class="va">r_y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
+    width <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">r_x</span><span class="op">)</span>,
+    height <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">r_y</span><span class="op">)</span>,
+    strokeWidth <span class="op">=</span> <span class="fl">0.5</span>,
+    roughness <span class="op">=</span> <span class="fl">0L</span>,
+    strokeSharpness <span class="op">=</span> <span class="st">"round"</span>,
+    groupIds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"levelplot"</span>, 
+                    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'level-'</span>, <span class="va">ii</span><span class="op">)</span><span class="op">)</span>,
+    fillStyle <span class="op">=</span> <span class="st">"solid"</span>,
+    strokeColor <span class="op">=</span> <span class="va">col</span>,
+    points <span class="op">=</span> <span class="va">m</span><span class="op">)</span>
+  
+  <span class="va">d</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">shape</span><span class="op">)</span>
+  
+<span class="op">}</span>
+
+<span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="st">'fun.json'</span><span class="op">)</span></code></pre></div>
+<p>(this seems quite big for excalidraw.com to handle, the browser may become a bit sluggish)</p>
+<p><img src="fun.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
   </div>
 
