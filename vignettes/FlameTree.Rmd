@@ -1,0 +1,31 @@
+---
+title: "Drawing a flametree in Excalidraw"
+author: "Baptiste Auguié"
+date: '`r Sys.Date()`'
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Drawing a flametree in Excalidraw}
+  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette:
+  toc: true
+  toc_depth: 3
+  self_contained: false
+---
+
+```{r setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'}
+library(minixcali)
+library(purrr)
+library(knitr)
+opts_chunk$set(message = FALSE, 
+               warning=FALSE,
+               fig.width = 7,
+               fig.height = 3, 
+               out.width='100%')
+
+```
+
+## The flametree package
+
+
+
