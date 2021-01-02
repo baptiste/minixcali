@@ -18,7 +18,7 @@ xkd_draw(
   roughness = 0L,
   opacity = 100L,
   groupIds = list(),
-  strokeSharpness = "round",
+  strokeSharpness = c("round", "sharp"),
   isDeleted = FALSE,
   boundElementIds = NA,
   points = list(list(0L, 0L), list(100, 0L)),

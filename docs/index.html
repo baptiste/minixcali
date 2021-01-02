@@ -54,6 +54,9 @@
       <a href="articles/FlameTree.html">Drawing a flametree in Excalidraw</a>
     </li>
     <li>
+      <a href="articles/Maxwell.html">Maxwell's equations in Excalidraw</a>
+    </li>
+    <li>
       <a href="articles/Overview.html">Overview of the minixcali package</a>
     </li>
     <li>
@@ -83,7 +86,7 @@
   <div class="contents col-md-9">
 
 <p><img src="reference/figures/overview.png" alt="preview"></p>
-<p><a href="https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ" class="uri">https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ</a></p>
+<p>See live at: <a href="https://excalidraw.com/#json=4885835400871936,34ITu6koDrEJyWGKtO0M5w" class="uri">https://excalidraw.com/#json=4885835400871936,34ITu6koDrEJyWGKtO0M5w</a></p>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
@@ -97,6 +100,23 @@
 <span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span>file<span class="op">=</span><span class="st">'output.json'</span><span class="op">)</span></code></pre></div>
 <p>Imported into Excalidraw: <a href="https://excalidraw.com/#json=5715677440638976,p-zr2_oejToaWyr7Slr44w" class="uri">https://excalidraw.com/#json=5715677440638976,p-zr2_oejToaWyr7Slr44w</a></p>
 <p><img src="reference/figures/rectangle.png" alt="preview"></p>
+</div>
+<div id="acknowledgments" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acknowledgments" class="anchor"></a>Acknowledgments</h2>
+<ul>
+<li><p><a href="https://excalidraw.com/">Excalidraw</a> for this cool &amp; open interactive tool</p></li>
+<li><p><a href="https://coolbutuseless.github.io/package/minisvg/"><code>{minisvg}</code></a> by @coolbutuseless — the R6 model was too complicated for me to copy properly so I went for a dumb list structure ¯_(ツ)_/¯</p></li>
+<li><p><a href="https://CRAN.R-project.org/package=jsonlite"><code>{jsonlite}</code></a> to import/export R objects to JSON</p></li>
+<li><p><a href="https://www.tidyverse.org/"><code>{purrr}</code>, <code>{tibble}</code>, <code>{glue}</code></a> for making the initial digressions in development somewhat less terrible</p></li>
+<li><p><a href="https://github.com/brodieG/svgchop"><code>{svgchop}</code></a> by @brodieG to import SVG paths</p></li>
+<li><p><a href="https://flametree.djnavarro.net/"><code>{flametree}</code></a> for providing a pretty example <a href="https://baptiste.github.io/minixcali/articles/FlameTree.html">to play with</a></p></li>
+<li><p><a href="https://godoc.org/github.com/fogleman/ln/ln"><code>ln</code> (golang)</a> for cool SVGs <a href="https://baptiste.github.io/minixcali/articles/SvgChop.html">to import</a></p></li>
+<li><p><a href="http://www.poorlydrawnlines.com/">poorlydrawnlines</a> for Kevin and Roberto</p></li>
+<li><p><a href="https://wilkelab.org/isoband/"><code>{isoband}</code></a> to melt Excalidraw with volcanos</p></li>
+<li><p><a href="https://github.com/coolbutuseless/gridfont"><code>{gridfont}</code></a> by @coolbutuseless, to draw text as single line strokes</p></li>
+<li><p><a href="https://github.com/timelyportfolio/excalidrawr"><code>{excalidrawr}</code></a> by @timelyportfolio for the experimental Shiny wrapper around Excalidraw’s React component (hopefully this will help provide a live-preview)</p></li>
+</ul>
 </div>
 
   </div>
