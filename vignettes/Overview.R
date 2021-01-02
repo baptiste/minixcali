@@ -31,6 +31,10 @@ knitr::include_graphics('overview.png')
 #       version = 32L,
 #       versionNonce = 784119031L)
 
+## ----test_shape, eval=TRUE----------------------------------------------------
+str(xkd_text(text = "new label", 
+             strokeColor = "#555555"))
+
 ## ----iterate, eval=TRUE-------------------------------------------------------
 a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
              -300 ,   -80,   300,    300, 0, "#ced4da",
@@ -40,8 +44,8 @@ a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
 a$strokeWidth <- 2
 
 d <- Excali_doc()
-invoke(d$add, pmap(a, minixcali::g_element))
-str(d$elements)
+invoke(d$add, pmap(a, minixcali::xkd_rectangle))
+str(d$elements, max.level = 1)
 
 ## ----export, out.width="100%", echo=1-----------------------------------------
 d$export(file='testing.json')
@@ -52,16 +56,19 @@ str(.kevin) # stored coords in the package under data/
 
 d <- Excali_doc()
 
-for(l in .kevin){
-  shape <- c(l, list(type='draw',
-                     strokeWidth = 1L,
-                     roughness=0L,
-                     strokeSharpness= "round",
-                     groups = c("kevin"),
-                     fillStyle = "solid"))
-  shape$points <- list(l$points) # needs extra layer
+for (l in .kevin) {
+  call <- c(l,
+    list(
+      groupIds = list(list("kevin")),
+      strokeSharpness = "round",
+      fillStyle = "solid",
+      strokeWidth = 1L,
+      roughness = 0L
+    )
+  )
   
-  d$add(invoke(minixcali::g_element, shape))
+  shape <- invoke(xkd_draw, call)
+  d$add(shape)
   
 }
 

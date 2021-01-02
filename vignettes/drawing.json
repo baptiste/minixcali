@@ -17,12 +17,14 @@
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
+      "groupIds": [
+        [
+          "kevin"
+        ]
+      ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "groupIds": [
-        "kevin"
-      ],
-      "boundElementIds": null,
+      "boundElementIds": {},
       "points": [
         [-11.3614, -9.4008],
         [-38.974, -13.6249],
@@ -36,10 +38,15 @@
         [-9.4274, -32.2484],
         [-11.3614, -9.4008]
       ],
-      "id": "609b3b6d803303dcaafdf0d0eef1f2dd",
-      "seed": 198644531,
-      "version": 32,
-      "versionNonce": 784119031
+      "lastCommittedPoint": {},
+      "startBinding": {},
+      "endBinding": {},
+      "startArrowhead": {},
+      "endArrowhead": {},
+      "version": 1,
+      "versionNonce": 12345,
+      "id": "1fd055fd86288d81594e77b87be17a57",
+      "seed": 1068259940
     },
     {
       "type": "draw",
@@ -55,12 +62,14 @@
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
+      "groupIds": [
+        [
+          "kevin"
+        ]
+      ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "groupIds": [
-        "kevin"
-      ],
-      "boundElementIds": null,
+      "boundElementIds": {},
       "points": [
         [0, -5.7991],
         [0.2598, 51.5038],
@@ -81,10 +90,15 @@
         [3.4567, -11.8794],
         [0, -5.7991]
       ],
-      "id": "f330a38ad5d5469f3a093b9f521bd81c",
-      "seed": 990917501,
-      "version": 32,
-      "versionNonce": 784119031
+      "lastCommittedPoint": {},
+      "startBinding": {},
+      "endBinding": {},
+      "startArrowhead": {},
+      "endArrowhead": {},
+      "version": 1,
+      "versionNonce": 12345,
+      "id": "22188735a3d6ff47c7b5db5d13396bb7",
+      "seed": 546138989
     },
     {
       "type": "draw",
@@ -100,12 +114,14 @@
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
+      "groupIds": [
+        [
+          "kevin"
+        ]
+      ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "groupIds": [
-        "kevin"
-      ],
-      "boundElementIds": null,
+      "boundElementIds": {},
       "points": [
         [0, -13.9438],
         [0.6943, -11.9839],
@@ -116,10 +132,15 @@
         [0.3472, -14.5971],
         [0, -13.9438]
       ],
-      "id": "76faa9ba942d2beb98cd5ae8df869c84",
-      "seed": 135902679,
-      "version": 32,
-      "versionNonce": 784119031
+      "lastCommittedPoint": {},
+      "startBinding": {},
+      "endBinding": {},
+      "startArrowhead": {},
+      "endArrowhead": {},
+      "version": 1,
+      "versionNonce": 12345,
+      "id": "7b645332da4134e9625fbf003072ee3a",
+      "seed": 1836305300
     },
     {
       "type": "draw",
@@ -135,21 +156,28 @@
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
+      "groupIds": [
+        [
+          "kevin"
+        ]
+      ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "groupIds": [
-        "kevin"
-      ],
-      "boundElementIds": null,
+      "boundElementIds": {},
       "points": [
         [-18.5538, 0],
         [-18.5538, 26.756],
         [-20, 29.6485]
       ],
-      "id": "fafa0281284a2fa9603513030d2a76e0",
-      "seed": 726075484,
-      "version": 32,
-      "versionNonce": 784119031
+      "lastCommittedPoint": {},
+      "startBinding": {},
+      "endBinding": {},
+      "startArrowhead": {},
+      "endArrowhead": {},
+      "version": 1,
+      "versionNonce": 12345,
+      "id": "88de3efa0e10de00a28245ced29a2f0a",
+      "seed": 1153758166
     },
     {
       "type": "draw",
@@ -165,20 +193,27 @@
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
+      "groupIds": [
+        [
+          "kevin"
+        ]
+      ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "groupIds": [
-        "kevin"
-      ],
-      "boundElementIds": null,
+      "boundElementIds": {},
       "points": [
         [0, 0],
         [0, 26.0328]
       ],
-      "id": "1f0bdfdb0a7007bc721b8ca2f62b3953",
-      "seed": 1072996275,
-      "version": 32,
-      "versionNonce": 784119031
+      "lastCommittedPoint": {},
+      "startBinding": {},
+      "endBinding": {},
+      "startArrowhead": {},
+      "endArrowhead": {},
+      "version": 1,
+      "versionNonce": 12345,
+      "id": "ff7f1cb75318c9cf1ade241474dba867",
+      "seed": 43404989
     },
     {
       "type": "draw",
@@ -194,12 +229,14 @@
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
+      "groupIds": [
+        [
+          "kevin"
+        ]
+      ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "groupIds": [
-        "kevin"
-      ],
-      "boundElementIds": null,
+      "boundElementIds": {},
       "points": [
         [0, 0],
         [0, 5.7851],
@@ -207,10 +244,15 @@
         [41.9418, 15.1858],
         [47.0038, 13.0164]
       ],
-      "id": "717202759c095276b10b4ffaee64386c",
-      "seed": 2016280343,
-      "version": 32,
-      "versionNonce": 784119031
+      "lastCommittedPoint": {},
+      "startBinding": {},
+      "endBinding": {},
+      "startArrowhead": {},
+      "endArrowhead": {},
+      "version": 1,
+      "versionNonce": 12345,
+      "id": "ed5b34fcd621cdde0ccb1dab85dabeea",
+      "seed": 1356997179
     }
   ],
   "appState": {

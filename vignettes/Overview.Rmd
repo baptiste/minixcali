@@ -60,7 +60,7 @@ Note that there doesn't appear to be a device size / viewport / viewbox. I'm als
 
 ## Elements
 
-- "type": "rectangle" or "ellipse" or "draw" or "text"
+- "type": "rectangle" or "ellipse" or "draw" or "text". There's also "line" and "arrow" but the difference is only relevant for the user interface.
 
 Most attributes are pretty straight-forward,
 
@@ -78,7 +78,7 @@ Most attributes are pretty straight-forward,
 - "height": 300
 - "strokeSharpness": "sharp" or "round"
 
-The following are for text, but it doesn't seem to hurt if irrelevant parameters are passed to another shape type,
+The following are for text (but it doesn't seem to hurt if irrelevant parameters are passed to another shape type),
 
 - "text": "this is text"
 - "fontSize": 36
@@ -92,20 +92,13 @@ Each glyph is assigned some identification,
 - "seed": 233882977 # to generate unique random variations
 - "id": "3HjMtdwNS5YZdRqmv3BFM" # unique ID, e.g. md5 hash of object
 - "groupIds": [] # array of strings indicating glyph groupings
+- "boundElementIds" — ids of (linear) elements that are bound to this element for connected glyphs
 
-It's unclear to me what the following keywords refer to, but it doesn't seem to matter so far,
+Finally the following attributes for collaboration,
 
-- "boundElementIds": []
-- "version": 160
-- "versionNonce": 1571380943
-- "isDeleted": false
-
-Edit: I got the [following answers](https://github.com/excalidraw/excalidraw/discussions/2672),
-
-- "boundElementIds" — ids of (linear) elements that are bound to this element
-- "version" — integer that is sequentially incremented on each change. Currently used to reconcile elements during collaboration or when saving to server.
-- "versionNonce" — random integer that is regenerated on each change. Used for deterministic reconciliation of updates during collaboration, in case the versions are identical.
-
+- "version": integer that is sequentially incremented on each change. Currently used to reconcile elements during collaboration or when saving to server.
+- "versionNonce": random integer that is regenerated on each change. Used for deterministic reconciliation of updates during collaboration, in case the versions are identical.
+- "isDeleted": flag to keep track of deletes in collaboration
 
 ## Creating a simple scene
 
@@ -138,9 +131,16 @@ list(type = "rectangle",
      versionNonce = 784119031L)
 ```
 
-`g_element = function(...)` is a generic convenience function to create such lists by passing only those few parameters one wants to modify from the default values of a generic element.
+`minixcali` provides 4 functions (`xkd_rectangle()`, `xkd_ellipse()`, `xkd_draw()`, `xkd_text()`) to generate such lists from the set of default parameters.
 
-To create multiple shapes at once it can be useful to create a data.frame of attributes, and use `purrr` functions to iterate over each row,
+
+```{r test_shape, eval=TRUE}
+str(xkd_text(text = "new label", 
+             strokeColor = "#555555"))
+```
+
+
+To create multiple shapes at once it can be useful to create a list or data.frame of attributes, and use `purrr` functions to iterate over them,
 
 ```{r iterate, eval=TRUE}
 a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
@@ -151,8 +151,8 @@ a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
 a$strokeWidth <- 2
 
 d <- Excali_doc()
-invoke(d$add, pmap(a, minixcali::g_element))
-str(d$elements)
+invoke(d$add, pmap(a, minixcali::xkd_rectangle))
+str(d$elements, max.level = 1)
 ```
 
 We can the export the full tree to json and open it in Excalidraw,
@@ -166,7 +166,7 @@ The drawing may be edited at https://excalidraw.com/#json=5181621544157184,h3q8W
 
 ## Lines 
 
-`line` and `draw` elements (the difference is in the interaction with online tools; there's none from the JSON perspective) require a `points` attribute that encodes (x,y) node coordinates in an array structure. This messes a bit with the `tibble` approach above, probably requiring an understanding of list-columns. Failing that, I've sprinkled around random `list()` wrappers until things kind of worked.
+`line`, `arrow` and `draw` elements (the difference is in the interaction with online tools; there's none from the JSON perspective) require a `points` attribute that encodes (x,y) node coordinates in an array structure. 
 
 Say we have inherited some (x,y) coordinates representing a polygon from a drawing program; we can insert them into the `points` attribute and from there generate the scene as above. It is also possible to group multiple paths by giving them a common `group` attribute, as illustrated below. The resulting group can then be edited (moved, rotated, attribute changes, etc.) as one object in Excalidraw.
 
@@ -175,16 +175,19 @@ str(.kevin) # stored coords in the package under data/
 
 d <- Excali_doc()
 
-for(l in .kevin){
-  shape <- c(l, list(type='draw',
-                     strokeWidth = 1L,
-                     roughness=0L,
-                     strokeSharpness= "round",
-                     groups = c("kevin"),
-                     fillStyle = "solid"))
-  shape$points <- list(l$points) # needs extra layer
+for (l in .kevin) {
+  call <- c(l,
+    list(
+      groupIds = list(list("kevin")),
+      strokeSharpness = "round",
+      fillStyle = "solid",
+      strokeWidth = 1L,
+      roughness = 0L
+    )
+  )
   
-  d$add(invoke(minixcali::g_element, shape))
+  shape <- invoke(xkd_draw, call)
+  d$add(shape)
   
 }
 

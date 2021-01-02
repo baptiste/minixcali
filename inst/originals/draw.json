@@ -1,0 +1,65 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "Kb_WexEmXWXa7-WbfWlj4",
+      "type": "draw",
+      "x": 299.3902439024394,
+      "y": 389.56097560975587,
+      "width": 82.92682926829275,
+      "height": 86.58536585365852,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "strokeSharpness": "round",
+      "seed": 681080882,
+      "version": 59,
+      "versionNonce": 1755303538,
+      "isDeleted": false,
+      "boundElementIds": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          -3.658536585365823
+        ],
+        [
+          6.097560975609781,
+          -14.634146341463406
+        ],
+        [
+          47.560975609756156,
+          -58.536585365853625
+        ],
+        [
+          74.39024390243901,
+          -82.92682926829269
+        ],
+        [
+          82.92682926829275,
+          -86.58536585365852
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null
+    }
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  }
+}
