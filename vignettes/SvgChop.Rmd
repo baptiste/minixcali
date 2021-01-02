@@ -28,7 +28,7 @@ opts_chunk$set(message = FALSE,
 As an experiment we'll try to import the following svg output from [`ln`, a cool go program to create 3D line drawings for pen plotters](https://github.com/fogleman/ln).
 
 ```{r input, out.width="100%", fig.align='center', echo=FALSE}
-knitr::include_graphics('fun.svg')
+knitr::include_graphics(system.file('svgs/fun.svg', package='minixcali'))
 ```
 
 The SVG file contains many polylines such as
