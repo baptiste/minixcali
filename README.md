@@ -17,4 +17,7 @@ d$add(shape)
 d$export(file='output.json')
 ```
 
+Imported into Excalidraw:
+<https://excalidraw.com/#json=5715677440638976,p-zr2_oejToaWyr7Slr44w>
+
 ![preview](man/figures/rectangle.png)
