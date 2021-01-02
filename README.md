@@ -30,7 +30,7 @@ Imported into Excalidraw:
 
   - [`{minisvg}`](https://coolbutuseless.github.io/package/minisvg/) by
     @coolbutuseless — the R6 model was too complicated for me to copy
-    properly so I went for a dumb list structure ¯\_(ツ)\_/¯
+    properly so I settled for a dumb list structure `¯\_(ツ)_/¯`
 
   - [`{jsonlite}`](https://CRAN.R-project.org/package=jsonlite) to
     import/export R objects to JSON
