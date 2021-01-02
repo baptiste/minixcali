@@ -20,11 +20,11 @@
       "groupIds": [],
       "strokeSharpness": "sharp",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "e4cf5dda9bc837d83cba54b5ca2146df",
-      "seed": 1013039742
+      "id": "b9d4762b4d18bd9dba02a67b1da6bc66",
+      "seed": 1445006012
     },
     {
       "type": "rectangle",
@@ -43,11 +43,11 @@
       "groupIds": [],
       "strokeSharpness": "sharp",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "a606d9f5393e04ab745da2efcb23c690",
-      "seed": 1463879990
+      "id": "d8eb67aec109683618c3b39b6be91c0b",
+      "seed": 776176175
     },
     {
       "type": "rectangle",
@@ -66,11 +66,11 @@
       "groupIds": [],
       "strokeSharpness": "sharp",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "03277b81ca9dedf4791181f03b03c251",
-      "seed": 1301926080
+      "id": "cf0d49b627f584404d9c869b503f10b1",
+      "seed": 1658982011
     }
   ],
   "appState": {

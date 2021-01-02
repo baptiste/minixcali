@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-![preview](docs/articles/overview.png)
+![preview](man/figures/overview.png)
 
 <https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ>
 
@@ -16,3 +16,5 @@ shape <- xkd_rectangle(width = 300, height=200,
 d$add(shape)
 d$export(file='output.json')
 ```
+
+![preview](man/figures/rectangle.png)

@@ -24,7 +24,7 @@
       ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "points": [
         [-11.3614, -9.4008],
         [-38.974, -13.6249],
@@ -38,15 +38,15 @@
         [-9.4274, -32.2484],
         [-11.3614, -9.4008]
       ],
-      "lastCommittedPoint": {},
-      "startBinding": {},
-      "endBinding": {},
-      "startArrowhead": {},
-      "endArrowhead": {},
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "1fd055fd86288d81594e77b87be17a57",
-      "seed": 1090348705
+      "id": "e0adc5208fa7dd5a84cbe6d2e14602ee",
+      "seed": 1024466829
     },
     {
       "type": "draw",
@@ -69,7 +69,7 @@
       ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "points": [
         [0, -5.7991],
         [0.2598, 51.5038],
@@ -90,15 +90,15 @@
         [3.4567, -11.8794],
         [0, -5.7991]
       ],
-      "lastCommittedPoint": {},
-      "startBinding": {},
-      "endBinding": {},
-      "startArrowhead": {},
-      "endArrowhead": {},
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "22188735a3d6ff47c7b5db5d13396bb7",
-      "seed": 1935534762
+      "id": "82070c62b28fb878cb0300c8b2e19bd3",
+      "seed": 298421283
     },
     {
       "type": "draw",
@@ -121,7 +121,7 @@
       ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "points": [
         [0, -13.9438],
         [0.6943, -11.9839],
@@ -132,15 +132,15 @@
         [0.3472, -14.5971],
         [0, -13.9438]
       ],
-      "lastCommittedPoint": {},
-      "startBinding": {},
-      "endBinding": {},
-      "startArrowhead": {},
-      "endArrowhead": {},
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "7b645332da4134e9625fbf003072ee3a",
-      "seed": 245419229
+      "id": "91bbe9e34fb594d53c0cbc2942226bbf",
+      "seed": 1438663771
     },
     {
       "type": "draw",
@@ -163,21 +163,21 @@
       ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "points": [
         [-18.5538, 0],
         [-18.5538, 26.756],
         [-20, 29.6485]
       ],
-      "lastCommittedPoint": {},
-      "startBinding": {},
-      "endBinding": {},
-      "startArrowhead": {},
-      "endArrowhead": {},
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "88de3efa0e10de00a28245ced29a2f0a",
-      "seed": 1820350727
+      "id": "a214583aea16e999d79ec76dd8f8e8cc",
+      "seed": 1445006012
     },
     {
       "type": "draw",
@@ -200,20 +200,20 @@
       ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "points": [
         [0, 0],
         [0, 26.0328]
       ],
-      "lastCommittedPoint": {},
-      "startBinding": {},
-      "endBinding": {},
-      "startArrowhead": {},
-      "endArrowhead": {},
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "ff7f1cb75318c9cf1ade241474dba867",
-      "seed": 1381266031
+      "id": "1837633c1e18f10243c1f51999aea760",
+      "seed": 1521041977
     },
     {
       "type": "draw",
@@ -236,7 +236,7 @@
       ],
       "strokeSharpness": "round",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "points": [
         [0, 0],
         [0, 5.7851],
@@ -244,15 +244,15 @@
         [41.9418, 15.1858],
         [47.0038, 13.0164]
       ],
-      "lastCommittedPoint": {},
-      "startBinding": {},
-      "endBinding": {},
-      "startArrowhead": {},
-      "endArrowhead": {},
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "ed5b34fcd621cdde0ccb1dab85dabeea",
-      "seed": 1837290030
+      "id": "ee693b78d5a1551b04b43a4171069015",
+      "seed": 1389939989
     }
   ],
   "appState": {

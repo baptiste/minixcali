@@ -13,10 +13,10 @@ knitr::opts_chunk$set(
 )
 
 library(minixcali)
-# knitr::include_graphics('json/preview.png')
+# knitr::include_graphics('man/figures/preview.png')
 ```
 
-![preview](docs/articles/overview.png)
+![preview](man/figures/overview.png)
 
 https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ
 
@@ -32,3 +32,7 @@ d$add(shape)
 d$export(file='output.json')
 
 ```
+
+
+
+![preview](man/figures/rectangle.png)

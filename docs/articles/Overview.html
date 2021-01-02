@@ -212,7 +212,7 @@
 ##  $ height         : num 100
 ##  $ angle          : num 0
 ##  $ strokeColor    : chr "#555555"
-##  $ backgroundColor: chr "transparent"
+##  $ backgroundColor: chr "#868e96"
 ##  $ fillStyle      : chr "solid"
 ##  $ strokeWidth    : int 2
 ##  $ strokeStyle    : chr "solid"
@@ -221,7 +221,7 @@
 ##  $ groupIds       : list()
 ##  $ strokeSharpness: chr "sharp"
 ##  $ isDeleted      : logi FALSE
-##  $ boundElementIds: NULL
+##  $ boundElementIds: logi NA
 ##  $ text           : chr "new label"
 ##  $ fontSize       : int 36
 ##  $ fontFamily     : int 1
@@ -230,8 +230,8 @@
 ##  $ baseline       : int 32
 ##  $ version        : num 1
 ##  $ versionNonce   : num 12345
-##  $ id             : chr "f70196a525eb9d64e4d5ac49e89f34db"
-##  $ seed           : int 643784125</code></pre>
+##  $ id             : chr "1f9a050f82d6fa104fb83235d82ff816"
+##  $ seed           : int 345772265</code></pre>
 <p>To create multiple shapes at once it can be useful to create a list or data.frame of attributes, and use <code>purrr</code> functions to iterate over them,</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">width</span>, <span class="op">~</span><span class="va">height</span>, <span class="op">~</span><span class="va">roughness</span>, <span class="op">~</span><span class="va">backgroundColor</span>,

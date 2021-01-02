@@ -11,7 +11,7 @@ xkd_rectangle(
   height = 100,
   angle = 0L,
   strokeColor = "#000000",
-  backgroundColor = "transparent",
+  backgroundColor = "#868e96",
   fillStyle = c("solid", "hachure", "cross-hatch"),
   strokeWidth = 2L,
   strokeStyle = c("solid", "dashed", "dotted"),
@@ -20,7 +20,7 @@ xkd_rectangle(
   groupIds = list(),
   strokeSharpness = c("sharp", "round"),
   isDeleted = FALSE,
-  boundElementIds = NULL,
+  boundElementIds = NA,
   version = 1,
   versionNonce = 12345
 )

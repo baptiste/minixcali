@@ -11,7 +11,7 @@
       "height": 200,
       "angle": 0,
       "strokeColor": "#000000",
-      "backgroundColor": "transparent",
+      "backgroundColor": "#868e96",
       "fillStyle": "hachure",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -20,11 +20,11 @@
       "groupIds": [],
       "strokeSharpness": "sharp",
       "isDeleted": false,
-      "boundElementIds": {},
+      "boundElementIds": null,
       "version": 1,
       "versionNonce": 12345,
-      "id": "bb8762d6b3e6cee2decb51385c630eb0",
-      "seed": 1177069095
+      "id": "9fd77b5c29e51ff51a83085d95200c67",
+      "seed": 469017081
     }
   ],
   "appState": {
