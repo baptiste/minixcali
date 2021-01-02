@@ -1,0 +1,12 @@
+home:
+  title: Experimental package to output to Excalidraw format
+  description: Create Excalidraw scenes from R
+  
+template:
+  params:
+    bootswatch: lumen
+  opengraph:
+    twitter:
+      creator: "@baptnz"
+      card: summary_large_image
+      
