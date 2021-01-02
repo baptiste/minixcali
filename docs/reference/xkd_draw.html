@@ -98,9 +98,6 @@
       <a href="../articles/Overview.html">Overview of the minixcali package</a>
     </li>
     <li>
-      <a href="../articles/PDLstrip.html">Creating a dummy PDL strip for Excalidraw</a>
-    </li>
-    <li>
       <a href="../articles/SvgChop.html">Parsing existing SVGs for use in Excalidraw</a>
     </li>
   </ul>
@@ -143,9 +140,9 @@
   angle <span class='op'>=</span> <span class='fl'>0L</span>,
   strokeColor <span class='op'>=</span> <span class='st'>"#000000"</span>,
   backgroundColor <span class='op'>=</span> <span class='st'>"transparent"</span>,
-  fillStyle <span class='op'>=</span> <span class='st'>"solid"</span>,
+  fillStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"solid"</span>, <span class='st'>"hachure"</span>, <span class='st'>"cross-hatch"</span><span class='op'>)</span>,
   strokeWidth <span class='op'>=</span> <span class='fl'>1L</span>,
-  strokeStyle <span class='op'>=</span> <span class='st'>"solid"</span>,
+  strokeStyle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"solid"</span>, <span class='st'>"dashed"</span>, <span class='st'>"dotted"</span><span class='op'>)</span>,
   roughness <span class='op'>=</span> <span class='fl'>0L</span>,
   opacity <span class='op'>=</span> <span class='fl'>100L</span>,
   groupIds <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -195,7 +192,7 @@
     </tr>
     <tr>
       <th>fillStyle</th>
-      <td><p>"solid" or "hatch" or "cross-hatch"</p></td>
+      <td><p>"solid" or "hachure" or "cross-hatch"</p></td>
     </tr>
     <tr>
       <th>strokeWidth</th>

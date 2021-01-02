@@ -12,9 +12,9 @@ xkd_draw(
   angle = 0L,
   strokeColor = "#000000",
   backgroundColor = "transparent",
-  fillStyle = "solid",
+  fillStyle = c("solid", "hachure", "cross-hatch"),
   strokeWidth = 1L,
-  strokeStyle = "solid",
+  strokeStyle = c("solid", "dashed", "dotted"),
   roughness = 0L,
   opacity = 100L,
   groupIds = list(),
@@ -46,7 +46,7 @@ xkd_draw(
 
 \item{backgroundColor}{HTML colour code}
 
-\item{fillStyle}{"solid" or "hatch" or "cross-hatch"}
+\item{fillStyle}{"solid" or "hachure" or "cross-hatch"}
 
 \item{strokeWidth}{1 or 2 or 4}
 

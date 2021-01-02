@@ -12,18 +12,27 @@ xkd_rectangle <- function(x = 0.0,
                           angle = 0L,
                           strokeColor = "#000000",
                           backgroundColor = "transparent",
-                          fillStyle = "solid",
+                          fillStyle = c("solid",
+                                        "hachure",
+                                        "cross-hatch"),
                           strokeWidth = 2L,
-                          strokeStyle = "solid",
+                          strokeStyle = c("solid",
+                                          "dashed",
+                                          "dotted"),
                           roughness = 0L,
                           opacity = 100L,
                           groupIds = list(),
-                          strokeSharpness = "sharp",
+                          strokeSharpness = c("sharp","round"),
                           isDeleted = FALSE,
                           boundElementIds = NULL,
                           version = 1,
                           versionNonce = 12345) {
   type = 'rectangle'
+  
+  fillStyle = match.arg(fillStyle)
+  strokeStyle = match.arg(strokeStyle)
+  strokeSharpness = match.arg(strokeSharpness)
+  
   new_elem <- as.list(environment())
   
   # hashing the element to make a unique ID
@@ -49,18 +58,27 @@ xkd_ellipse <- function(x = 0.0,
                         angle = 0L,
                         strokeColor = "#000000",
                         backgroundColor = "transparent",
-                        fillStyle = "solid",
+                        fillStyle = c("solid",
+                                      "hachure",
+                                      "cross-hatch"),
                         strokeWidth = 2L,
-                        strokeStyle = "solid",
+                        strokeStyle = c("solid",
+                                        "dashed",
+                                        "dotted"),
                         roughness = 0L,
                         opacity = 100L,
                         groupIds = list(),
-                        strokeSharpness = "sharp",
+                        strokeSharpness = c("sharp","round"),
                         isDeleted = FALSE,
                         boundElementIds = NULL,
                         version = 1,
                         versionNonce = 12345) {
   type = 'ellipse'
+  
+  fillStyle = match.arg(fillStyle)
+  strokeStyle = match.arg(strokeStyle)
+  strokeSharpness = match.arg(strokeSharpness)
+  
   new_elem <- as.list(environment())
   
   # hashing the element to make a unique ID
@@ -91,9 +109,13 @@ xkd_draw <- function(x = 0,
                      angle = 0L,
                      strokeColor = "#000000",
                      backgroundColor = "transparent",
-                     fillStyle = "solid",
+                     fillStyle = c("solid",
+                                   "hachure",
+                                   "cross-hatch"),
                      strokeWidth = 1L,
-                     strokeStyle = "solid",
+                     strokeStyle = c("solid",
+                                     "dashed",
+                                     "dotted"),
                      roughness = 0L,
                      opacity = 100L,
                      groupIds = list(),
@@ -110,6 +132,11 @@ xkd_draw <- function(x = 0,
                      version = 1,
                      versionNonce = 12345) {
   type = 'draw'
+  
+  fillStyle = match.arg(fillStyle)
+  strokeStyle = match.arg(strokeStyle)
+  strokeSharpness = match.arg(strokeSharpness)
+  
   new_elem <- as.list(environment())
   
   # hashing the element to make a unique ID
@@ -145,7 +172,8 @@ xkd_text <- function(x = 0.0,
                      roughness = 0L,
                      opacity = 100L,
                      groupIds = list(),
-                     strokeSharpness = "sharp",
+                     strokeSharpness = c("sharp",
+                                         "round"),
                      isDeleted = FALSE,
                      boundElementIds = NULL,
                      text = "text",
@@ -157,6 +185,11 @@ xkd_text <- function(x = 0.0,
                      version = 1,
                      versionNonce = 12345) {
   type = 'text'
+  
+  fillStyle = match.arg(fillStyle)
+  strokeStyle = match.arg(strokeStyle)
+  strokeSharpness = match.arg(strokeSharpness)
+  
   new_elem <- as.list(environment())
   
   # hashing the element to make a unique ID
@@ -178,7 +211,7 @@ xkd_text <- function(x = 0.0,
 #' @param angle in radians
 #' @param strokeColor HTML colour code
 #' @param backgroundColor HTML colour code
-#' @param fillStyle "solid" or "hatch" or "cross-hatch"
+#' @param fillStyle "solid" or "hachure" or "cross-hatch"
 #' @param strokeWidth 1 or 2 or 4
 #' @param strokeStyle "solid" or "dashed" or "dotted"
 #' @param roughness degree of wiggliness, 0 or 1 or 2 
@@ -198,18 +231,27 @@ xkd_element <- function(type = 'rectangle',
                         angle = 0L,
                         strokeColor = "#000000",
                         backgroundColor = "transparent",
-                        fillStyle = "solid",
+                        fillStyle = c("solid",
+                                      "hachure",
+                                      "cross-hatch"),
                         strokeWidth = 2L,
-                        strokeStyle = "solid",
+                        strokeStyle = c("solid",
+                                        "dashed",
+                                        "dotted"),
                         roughness = 0L,
                         opacity = 100L,
                         groupIds = list(),
-                        strokeSharpness = "sharp",
+                        strokeSharpness = c("sharp","round"),
                         isDeleted = FALSE,
                         boundElementIds = NULL,
                         version = 1,
                         versionNonce = 12345,
                         ...) {
+  
+  fillStyle = match.arg(fillStyle)
+  strokeStyle = match.arg(strokeStyle)
+  strokeSharpness = match.arg(strokeSharpness)
+  
   new_elem <- as.list(environment())
   
   # hashing the element to make a unique ID

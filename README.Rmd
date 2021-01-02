@@ -16,13 +16,19 @@ library(minixcali)
 # knitr::include_graphics('json/preview.png')
 ```
 
-![preview](inst/json/preview.png)
+![preview](docs/articles/overview.png)
 
 https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ
 
 ## Usage
 
-```{r, include = TRUE, eval=FALSE}
+```{r, include = TRUE, eval=TRUE}
 library(minixcali)
-pdl_strip() # no argument here
+
+d <- Excali_doc()
+shape <- xkd_rectangle(width = 300, height=200,
+                       fillStyle = 'hachure', roughness = 2)
+d$add(shape)
+d$export(file='output.json')
+
 ```

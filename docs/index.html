@@ -57,9 +57,6 @@
       <a href="articles/Overview.html">Overview of the minixcali package</a>
     </li>
     <li>
-      <a href="articles/PDLstrip.html">Creating a dummy PDL strip for Excalidraw</a>
-    </li>
-    <li>
       <a href="articles/SvgChop.html">Parsing existing SVGs for use in Excalidraw</a>
     </li>
   </ul>
@@ -85,14 +82,19 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<p><img src="inst/json/preview.png" alt="preview"></p>
+<p><img src="docs/articles/overview.png" alt="preview"></p>
 <p><a href="https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ" class="uri">https://excalidraw.com/#json=5711173496340480,eQSvgvxy8AjKeGWJz1CfVQ</a></p>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/baptiste/minixcali">minixcali</a></span><span class="op">)</span>
-<span class="fu">pdl_strip</span><span class="op">(</span><span class="op">)</span> <span class="co"># no argument here</span></code></pre></div>
+
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/xkd_rectangle.html">xkd_rectangle</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">300</span>, height<span class="op">=</span><span class="fl">200</span>,
+                       fillStyle <span class="op">=</span> <span class="st">'hachure'</span>, roughness <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">d</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">shape</span><span class="op">)</span>
+<span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span>file<span class="op">=</span><span class="st">'output.json'</span><span class="op">)</span></code></pre></div>
 </div>
 
   </div>

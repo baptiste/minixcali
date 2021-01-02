@@ -10,13 +10,13 @@ opts_chunk$set(message = FALSE,
 
 
 ## ----input, out.width="100%", fig.align='center', echo=FALSE------------------
-knitr::include_graphics(system.file('svgs/fun.svg', package='minixcali'))
+knitr::include_graphics('fun.svg')
 
 ## ----svgchop------------------------------------------------------------------
 # remotes::install_github('brodieG/svgchop')
 library(svgchop)
 
-b <- chop('fun.svg', steps = 3)[[1]]
+b <- chop('fun.svg', steps = 1)[[1]]
 
 str(b, max.level = 1, 
     give.attr = FALSE, list.len = 3)
@@ -29,11 +29,15 @@ library(scales)
 
 cols <- hcl(seq(0, 360, length = length(b)))
 
+step <- 50
 scale <- 0.5
 
 for (ii in seq_along(b)) {
   col <- cols[ii]
+  
   s <- b[[ii]]
+  if(ncol(b[[ii]])>50)
+  s <- b[[ii]][1:2,seq(1,ncol(b[[ii]]),by=step)]
   
   r_x <- range(s[1, ])
   r_y <- range(s[2, ])

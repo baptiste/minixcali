@@ -18,7 +18,7 @@ xkd_text(
   roughness = 0L,
   opacity = 100L,
   groupIds = list(),
-  strokeSharpness = "sharp",
+  strokeSharpness = c("sharp", "round"),
   isDeleted = FALSE,
   boundElementIds = NULL,
   text = "text",
@@ -46,7 +46,7 @@ xkd_text(
 
 \item{backgroundColor}{HTML colour code}
 
-\item{fillStyle}{"solid" or "hatch" or "cross-hatch"}
+\item{fillStyle}{"solid" or "hachure" or "cross-hatch"}
 
 \item{strokeWidth}{1 or 2 or 4}
 
