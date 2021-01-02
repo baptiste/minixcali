@@ -48,7 +48,7 @@ The `{svgchop}` package interprets a subset of the SVG standard and breaks down 
 # remotes::install_github('brodieG/svgchop')
 library(svgchop)
 
-b <- chop('fun.svg', steps = 3)[[1]]
+b <- chop('fun.svg', steps = 1)[[1]]
 
 str(b, max.level = 1, 
     give.attr = FALSE, list.len = 3)
@@ -59,6 +59,8 @@ At this step it's useful to check that the output is a list of polygon paths; so
 
 The only trick worth noting is that the (x,y) position should correspond to the bottom-left of the path, and the point coordinates are then relative to this origin. It can often be useful to give a general scaling factor between the original SVG coordinates and the Excalidraw scene (not necessarily using the same units).
 
+Since we have the coordinates of each path we can also alter them arbitrarily in R. For example here we might want to downsample each path for a smaller file output,
+
 ```{r fun}
 d <- Excali_doc()
 
@@ -66,11 +68,15 @@ library(scales)
 
 cols <- hcl(seq(0, 360, length = length(b)))
 
+step <- 50
 scale <- 0.5
 
 for (ii in seq_along(b)) {
   col <- cols[ii]
+  
   s <- b[[ii]]
+  if(ncol(b[[ii]])>50)
+  s <- b[[ii]][1:2,seq(1,ncol(b[[ii]]),by=step)]
   
   r_x <- range(s[1, ])
   r_y <- range(s[2, ])
@@ -99,7 +105,10 @@ for (ii in seq_along(b)) {
 d$export('fun.json')
 ```
 
-(this seems quite big for excalidraw.com to handle, the browser may become a bit sluggish)
+
+You can see this drawing at:  https://excalidraw.com/#json=5735613537976320,Yqz2x4xfrz7yGyiGCCxB0A
+
+(with step=1 the output is quite big for excalidraw.com to handle, and the browser may become a bit sluggish)
 
 ```{r drawing, out.width="100%", fig.align='center', echo=FALSE}
 knitr::include_graphics('fun.png')
