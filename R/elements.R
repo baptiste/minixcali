@@ -94,6 +94,65 @@ xkd_ellipse <- function(x = 0.0,
 }
 
 
+
+#' @title xkd_arrow
+#' @inheritParams xkd_element
+#' @param points of glyph
+#' @param lastCommittedPoint of glyph
+#' @param startBinding of glyph
+#' @param endBinding of glyph
+#' @param startArrowhead NA or "arrow"
+#' @param endArrowhead NA or "arrow"
+#' @export
+xkd_arrow <- function(x = 0,
+                     y = 0,
+                     width = 100,
+                     height = 100,
+                     angle = 0L,
+                     strokeColor = "#000000",
+                     backgroundColor = "#868e96",
+                     fillStyle = c("solid",
+                                   "hachure",
+                                   "cross-hatch"),
+                     strokeWidth = 1L,
+                     strokeStyle = c("solid",
+                                     "dashed",
+                                     "dotted"),
+                     roughness = 0L,
+                     opacity = 100L,
+                     groupIds = list(),
+                     strokeSharpness = c("round",
+                                         "sharp"),
+                     isDeleted = FALSE,
+                     boundElementIds = NA,
+                     points = list(list(0L, 0L),
+                                   list(100, 0L)),
+                     lastCommittedPoint = NA,
+                     startBinding = NA,
+                     endBinding = NA,
+                     startArrowhead = NA,
+                     endArrowhead = NA,
+                     version = 1,
+                     versionNonce = 12345) {
+  type = 'arrow'
+  
+  fillStyle = match.arg(fillStyle)
+  strokeStyle = match.arg(strokeStyle)
+  strokeSharpness = match.arg(strokeSharpness)
+  
+  new_elem <- as.list(environment())
+  
+  # hashing the element to make a unique ID
+  drop <- names(new_elem) %in% c('version', 'versionNonce')
+  new_elem$id =  digest::digest(new_elem[!drop],
+                                algo = "md5")
+  
+  # assign random seed
+  new_elem$seed = abs(sample(.seeds, 1))
+  
+  new_elem
+}
+
 #' @title xkd_draw
 #' @inheritParams xkd_element
 #' @param points of glyph

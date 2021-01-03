@@ -1,19 +1,4 @@
----
-title: "Single-stroke text in Excalidraw"
-author: "Baptiste Auguié"
-date: '`r Sys.Date()`'
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Single-stroke text in Excalidraw}
-  %\VignetteEncoding{UTF-8}
-output:
-  rmarkdown::html_vignette:
-  toc: true
-  toc_depth: 3
-  self_contained: false
----
-
-```{r setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'}
+## ----setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'----------
 library(minixcali)
 library(purrr)
 library(knitr)
@@ -23,27 +8,17 @@ opts_chunk$set(message = FALSE,
                fig.height = 4, 
                out.width='50%')
 
-```
 
-
-The `{gridfont}` package can convert a string of text into point coordinates for a single-stroke line font representation of the text. Note that the space character doesn't seem to have any strokes so for simplicity I replaced it with a `_`.
-
-```{r, fig.width = 3, fig.height = 5}
+## ---- fig.width = 3, fig.height = 5-------------------------------------------
 library(minixcali)
 library(gridfont)
 let <- create_text_df('merry_christmas')
 llet <- split(let, let$char_idx)
-```
 
-The structure consists of multiple nodes for each letter.
-
-```{r data}
+## ----data---------------------------------------------------------------------
 str(llet, list.len = 4)
-```
 
-We now proceed to build the Excalidraw scene one subpath at a time. We first add the polylines for each letter, then garnish them with points at the nodes.
-
-```{r fun}
+## ----fun----------------------------------------------------------------------
 
 
 d <- Excali_doc()
@@ -101,13 +76,7 @@ for (l in llet) {
 }
 
 d$export('gridfont.json')
-```
 
-You can see this drawing at:  https://excalidraw.com/#json=6287294034083840,0qR2T40GRb_m-NHIkYMzSw
-
-
-```{r drawing, out.width="100%", fig.align='center', echo=FALSE}
+## ----drawing, out.width="100%", fig.align='center', echo=FALSE----------------
 knitr::include_graphics('gridfont.png')
-```
-
 
