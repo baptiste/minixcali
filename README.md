@@ -4,7 +4,7 @@
 ![preview](man/figures/overview.png)
 
 See live at:
-<https://excalidraw.com/#json=4885835400871936,34ITu6koDrEJyWGKtO0M5w>
+<https://excalidraw.com/#json=6574685261135872,GxSfukqmhssGOdgZvNhG-g>
 
 ## Usage
 

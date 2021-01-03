@@ -1,0 +1,84 @@
+---
+title: "Drawing a flametree in Excalidraw"
+author: "Baptiste Auguié"
+date: '`r Sys.Date()`'
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Drawing a flametree in Excalidraw}
+  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette:
+  toc: true
+  toc_depth: 3
+  self_contained: false
+---
+
+```{r setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'}
+library(minixcali)
+library(purrr)
+library(knitr)
+opts_chunk$set(message = FALSE, 
+               warning=FALSE,
+               fig.width = 7,
+               fig.height = 4, 
+               out.width='50%')
+
+```
+
+
+```{r, fig.width = 3, fig.height = 5}
+library(minixcali)
+library(ggplot2)
+
+tr <- readRDS('franck.rds')[[1]]
+b <- split(tr, seq(1,nrow(tr)))
+str(b, list.len = 3)
+```
+
+
+```{r fun}
+d <- Excali_doc()
+
+
+library(scales)
+
+scale <- scale2 <- 0.8
+
+for (ii in seq_along(b)) {
+  s <- b[[ii]]
+  # flip svg y axis
+  s$y <- -s$y+1
+  s$yend <- -s$yend+1
+  
+  m <- scale2 * cbind(c(0,s$xend - s$x),c(0,s$yend - s$y)) 
+  
+  shape <- xkd_draw(
+    x = scale * s$x,
+    y =  scale * s$y,
+    width = scale2 *abs(s$xend - s$x),
+    height = scale2 *abs(s$yend - s$y),
+    strokeWidth = 0.8,
+    roughness = 3,
+    endArrowhead = "arrow",
+    strokeSharpness = "round",
+    groupIds = list(paste0('level-', ii)),
+    fillStyle = "solid",
+    strokeColor = s$colour[1],
+    backgroundColor = s$colour[1],
+    points = m)
+  
+  d$add(shape)
+  
+}
+
+d$export('franck.json')
+```
+
+You can see this drawing at:  https://excalidraw.com/#json=5730260331003904,U-jtojw6AHcRuH_lw2P4ng
+
+
+```{r drawing, out.width="50%", fig.align='center', echo=FALSE}
+# knitr::include_graphics('tree.png')
+```
+
+
