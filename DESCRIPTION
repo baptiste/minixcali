@@ -22,6 +22,11 @@ Suggests:
     magrittr,
     rmarkdown,
     xml2,
-    htmltools
+    htmltools,
+    svgchop,
+    ggplot2,
+    flametree,
+    gridfont,
+    isoband
 VignetteBuilder: knitr
 RoxygenNote: 7.1.0

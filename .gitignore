@@ -34,3 +34,5 @@
 
 # R Environment Variables
 .Renviron
+inst/experiments/*.svg
+inst/experiments/pat/*.svg
