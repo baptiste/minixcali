@@ -105,35 +105,35 @@ xkd_ellipse <- function(x = 0.0,
 #' @param endArrowhead NA or "arrow"
 #' @export
 xkd_arrow <- function(x = 0,
-                     y = 0,
-                     width = 100,
-                     height = 100,
-                     angle = 0L,
-                     strokeColor = "#000000",
-                     backgroundColor = "#868e96",
-                     fillStyle = c("solid",
-                                   "hachure",
-                                   "cross-hatch"),
-                     strokeWidth = 1L,
-                     strokeStyle = c("solid",
-                                     "dashed",
-                                     "dotted"),
-                     roughness = 0L,
-                     opacity = 100L,
-                     groupIds = list(),
-                     strokeSharpness = c("round",
-                                         "sharp"),
-                     isDeleted = FALSE,
-                     boundElementIds = NA,
-                     points = list(list(0L, 0L),
-                                   list(100, 0L)),
-                     lastCommittedPoint = NA,
-                     startBinding = NA,
-                     endBinding = NA,
-                     startArrowhead = NA,
-                     endArrowhead = NA,
-                     version = 1,
-                     versionNonce = 12345) {
+                      y = 0,
+                      width = 100,
+                      height = 100,
+                      angle = 0L,
+                      strokeColor = "#000000",
+                      backgroundColor = "#868e96",
+                      fillStyle = c("solid",
+                                    "hachure",
+                                    "cross-hatch"),
+                      strokeWidth = 1L,
+                      strokeStyle = c("solid",
+                                      "dashed",
+                                      "dotted"),
+                      roughness = 0L,
+                      opacity = 100L,
+                      groupIds = list(),
+                      strokeSharpness = c("round",
+                                          "sharp"),
+                      isDeleted = FALSE,
+                      boundElementIds = NA,
+                      points = list(list(0L, 0L),
+                                    list(100, 0L)),
+                      lastCommittedPoint = NA,
+                      startBinding = NA,
+                      endBinding = NA,
+                      startArrowhead = NA,
+                      endArrowhead = NA,
+                      version = 1,
+                      versionNonce = 12345) {
   type = 'arrow'
   
   fillStyle = match.arg(fillStyle)
@@ -193,6 +193,66 @@ xkd_draw <- function(x = 0,
                      version = 1,
                      versionNonce = 12345) {
   type = 'draw'
+  
+  fillStyle = match.arg(fillStyle)
+  strokeStyle = match.arg(strokeStyle)
+  strokeSharpness = match.arg(strokeSharpness)
+  
+  new_elem <- as.list(environment())
+  
+  # hashing the element to make a unique ID
+  drop <- names(new_elem) %in% c('version', 'versionNonce')
+  new_elem$id =  digest::digest(new_elem[!drop],
+                                algo = "md5")
+  
+  # assign random seed
+  new_elem$seed = abs(sample(.seeds, 1))
+  
+  new_elem
+}
+
+# "boundElements": null,
+# "updated": 1643564560168,
+# "containerId": null,
+
+#' @title xkd_math
+#' @inheritParams xkd_element
+#' @param text text string
+#' @param fontSize in pts
+#' @param fontFamily 1, 2, 3 (FG_Virgil,Cascadia,?)
+#' @param textAlign "left", "center", "right"
+#' @param verticalAlign "bottom", "center", "top"
+#' @param baseline offset in pts?
+#' @export
+xkd_math <- function(x = 0.0,
+                     y = 0.0,
+                     width = 100,
+                     height = 100,
+                     angle = 0,
+                     strokeColor = "#000000",
+                     backgroundColor = "#868e96",
+                     fillStyle = "solid",
+                     strokeWidth = 2L,
+                     strokeStyle = "solid",
+                     roughness = 0L,
+                     opacity = 100L,
+                     groupIds = list(),
+                     strokeSharpness = c("sharp",
+                                         "round"),
+                     isDeleted = FALSE,
+                     boundElementIds = NA,
+                     text = "$$\\nabla\\cdot\\mathbf{E}$$",
+                     fontSize = 36L,
+                     fontFamily = 1L,
+                     textAlign = "left",
+                     verticalAlign = "top",
+                     baseline = 32L,
+                     version = 300,
+                     versionNonce = 12345,
+                     subtype = "math",
+                     originalText = "$$\\nabla\\cdot\\mathbf{E}$$",
+                     useTex =  TRUE) {
+  type = 'text'
   
   fillStyle = match.arg(fillStyle)
   strokeStyle = match.arg(strokeStyle)
