@@ -8,6 +8,7 @@ ExcaliDocument <- R6::R6Class(
     version = NULL,
     source = NULL,
     appState = NULL,
+    files = NULL,
     elements = list(),
     
     initialize = function() {
@@ -17,7 +18,7 @@ ExcaliDocument <- R6::R6Class(
       self$appState <-
         list(viewBackgroundColor = "#ffffff",
              gridSize = NA)
-      
+      self$files <- list()
       invisible(self)
     },
     
@@ -37,7 +38,8 @@ ExcaliDocument <- R6::R6Class(
         version = self$version,
         source = self$source,
         elements = self$elements,
-        appState = self$appState
+        appState = self$appState,
+        files = self$files
       )
       
       jsonlite::write_json(

@@ -1,0 +1,72 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "minixcali",
+  "elements": [
+    {
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "width": 300,
+      "height": 200,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "#868e96",
+      "fillStyle": "hachure",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 2,
+      "opacity": 100,
+      "groupIds": [],
+      "strokeSharpness": "sharp",
+      "isDeleted": false,
+      "boundElementIds": null,
+      "version": 1,
+      "versionNonce": 12345,
+      "id": "9fd77b5c29e51ff51a83085d95200c67",
+      "seed": 2100188067
+    },
+    {
+      "originalText": "\\alpha\\approx \\frac\\pi 2",
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 100,
+      "height": 100,
+      "angle": 0,
+      "text": "\\alpha\\approx \\frac\\pi 2",
+      "strokeColor": "#000000",
+      "backgroundColor": "#868e96",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "strokeSharpness": "sharp",
+      "boundElementIds": null,
+      "fontSize": 36,
+      "fontFamily": 1,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "baseline": 32,
+      "version": 300,
+      "versionNonce": 12345,
+      "isDeleted": false,
+      "subtype": "math",
+      "containerId": null,
+      "customData": {
+        "useTex": true,
+        "mathOnly": true,
+        "ariaLabel": "\\alpha\\approx \\frac\\pi 2"
+      },
+      "id": "365416e6d98161c7d1942f6e31ca699e",
+      "seed": 1719553892
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": []
+}

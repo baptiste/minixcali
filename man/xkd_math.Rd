@@ -10,6 +10,7 @@ xkd_math(
   width = 100,
   height = 100,
   angle = 0,
+  text = "\\\\nabla\\\\cdot\\\\mathbf{E}",
   strokeColor = "#000000",
   backgroundColor = "#868e96",
   fillStyle = "solid",
@@ -19,19 +20,18 @@ xkd_math(
   opacity = 100L,
   groupIds = list(),
   strokeSharpness = c("sharp", "round"),
-  isDeleted = FALSE,
   boundElementIds = NA,
-  text = "$$\\\\nabla\\\\cdot\\\\mathbf{E}$$",
-  fontSize = 36L,
+  fontSize = 28L,
   fontFamily = 1L,
   textAlign = "left",
   verticalAlign = "top",
-  baseline = 32L,
+  baseline = fontSize,
   version = 300,
   versionNonce = 12345,
+  isDeleted = FALSE,
   subtype = "math",
-  originalText = "$$\\\\nabla\\\\cdot\\\\mathbf{E}$$",
-  useTex = TRUE
+  containerId = NA,
+  customData = list(useTex = TRUE, mathOnly = TRUE)
 )
 }
 \arguments{
@@ -44,6 +44,8 @@ xkd_math(
 \item{height}{glyph height in px}
 
 \item{angle}{in radians}
+
+\item{text}{text string}
 
 \item{strokeColor}{HTML colour code}
 
@@ -63,11 +65,7 @@ xkd_math(
 
 \item{strokeSharpness}{"sharp" or "round"}
 
-\item{isDeleted}{tag for collaboration}
-
 \item{boundElementIds}{list of IDs used for connectors}
-
-\item{text}{text string}
 
 \item{fontSize}{in pts}
 
@@ -82,6 +80,8 @@ xkd_math(
 \item{version}{of glyph for collaboration}
 
 \item{versionNonce}{of glyph for collaboration}
+
+\item{isDeleted}{tag for collaboration}
 }
 \description{
 xkd_math

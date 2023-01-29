@@ -229,6 +229,7 @@ xkd_math <- function(x = 0.0,
                      width = 100,
                      height = 100,
                      angle = 0,
+                     text = "\\nabla\\cdot\\mathbf{E}",
                      strokeColor = "#000000",
                      backgroundColor = "#868e96",
                      fillStyle = "solid",
@@ -239,25 +240,32 @@ xkd_math <- function(x = 0.0,
                      groupIds = list(),
                      strokeSharpness = c("sharp",
                                          "round"),
-                     isDeleted = FALSE,
                      boundElementIds = NA,
-                     text = "$$\\nabla\\cdot\\mathbf{E}$$",
-                     fontSize = 36L,
+                     fontSize = 28L,
                      fontFamily = 1L,
                      textAlign = "left",
                      verticalAlign = "top",
-                     baseline = 32L,
+                     baseline = fontSize,
                      version = 300,
                      versionNonce = 12345,
+                     isDeleted = FALSE,
                      subtype = "math",
-                     originalText = "$$\\nabla\\cdot\\mathbf{E}$$",
-                     useTex =  TRUE) {
+                    containerId = NA,
+                     # originalText = "\\nabla\\cdot\\mathbf{E}",
+                     customData =list(
+                       useTex =  TRUE,
+                       # ariaLabel= "\\nabla\\cdot\\mathbf{E}",
+                       mathOnly =  TRUE
+                       )
+                     ) {
   type = 'text'
   
   fillStyle = match.arg(fillStyle)
   strokeStyle = match.arg(strokeStyle)
   strokeSharpness = match.arg(strokeSharpness)
   
+  originalText = text
+  customData$ariaLabel = text
   new_elem <- as.list(environment())
   
   # hashing the element to make a unique ID
