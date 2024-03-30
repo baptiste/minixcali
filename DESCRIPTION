@@ -1,32 +1,38 @@
-Package: minixcali
 Type: Package
+Package: minixcali
 Title: Excalidraw Document Builder
 Version: 0.0.1
-Authors@R: c(person("Baptiste", "Auguie",
-    email = "baptiste.auguie@gmail.com",
-    role = c("aut", "cre")))
+Authors@R: 
+    person("Baptiste", "Auguie", , "baptiste.auguie@gmail.com", role = c("aut", "cre"))
 Description: Build Excalidraw documents with R.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-URL: https://github.com/baptiste/minixcali
-Imports:
-    R6,
-    jsonlite
+URL: https://github.com/baptiste/minixcali,
+    https://baptiste.github.io/minixcali/
+BugReports: https://github.com/baptiste/minixcali/issues
 Depends: 
+    purrr,
     tibble,
-    tidyr,
-    purrr
+    tidyr
+Imports:
+    jsonlite,
+    R6
 Suggests: 
+    flametree,
+    ggplot2,
+    gridfont (>= 0.1.0),
+    htmltools,
+    isoband,
     knitr,
     magrittr,
     rmarkdown,
-    xml2,
-    htmltools,
-    svgchop,
-    ggplot2,
-    flametree,
-    gridfont,
-    isoband
-VignetteBuilder: knitr
-RoxygenNote: 7.2.1
+    svgchop (>= 0.2.0),
+    xml2
+VignetteBuilder: 
+    knitr
+Remotes: 
+    brodieG/svgchop,
+    coolbutuseless/gridfont
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.1
+Roxygen: list(markdown = TRUE)
