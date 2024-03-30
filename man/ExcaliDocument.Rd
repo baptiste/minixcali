@@ -4,29 +4,31 @@
 \alias{ExcaliDocument}
 \title{ExcaliDocument}
 \description{
-R6 Methods for ExcaliDocument object
+R6 Methods for ExcaliDocument object. Object structure is based on the
+Excalidraw JSON Schema:
+\url{https://docs.excalidraw.com/docs/codebase/json-schema}
 }
 \keyword{internal}
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
 \item{\code{type}}{(\code{character(1)})\cr
-Object type}
+The type of the Excalidraw schema}
 
 \item{\code{version}}{(\code{integer(1)})\cr
-ExcaliDraw version number}
+The version of the Excalidraw schema}
 
-\item{\code{source}}{(\code{integer(1)})\cr
-ExcaliDraw source}
-
-\item{\code{appState}}{(\code{list()})\cr
-ExcaliDraw app state}
-
-\item{\code{files}}{(\code{list()})\cr
-ExcaliDraw files}
+\item{\code{source}}{(\code{character(1)})\cr
+The source URL of the Excalidraw application}
 
 \item{\code{elements}}{(\code{list()})\cr
-ExcaliDraw elements}
+A list of objects representing excalidraw elements on canvas}
+
+\item{\code{appState}}{(\code{list()})\cr
+Additional application state/configuration}
+
+\item{\code{files}}{(\code{list()})\cr
+List of data for excalidraw image elements}
 }
 \if{html}{\out{</div>}}
 }

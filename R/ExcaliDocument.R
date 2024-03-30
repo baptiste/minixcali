@@ -1,7 +1,9 @@
 #' ExcaliDocument
 #' 
 #' @description
-#' R6 Methods for ExcaliDocument object
+#' R6 Methods for ExcaliDocument object. Object structure is based on the
+#' Excalidraw JSON Schema:
+#' <https://docs.excalidraw.com/docs/codebase/json-schema>
 #' 
 #' @keywords internal
 ExcaliDocument <- R6::R6Class(
@@ -10,34 +12,34 @@ ExcaliDocument <- R6::R6Class(
   public = list(
     
     #' @field type (`character(1)`)\cr
-    #' Object type
+    #' The type of the Excalidraw schema
     type = NULL,
     
     #' @field version (`integer(1)`)\cr
-    #' ExcaliDraw version number
+    #' The version of the Excalidraw schema
     version = NULL,
     
-    #' @field source (`integer(1)`)\cr
-    #' ExcaliDraw source
+    #' @field source (`character(1)`)\cr
+    #' The source URL of the Excalidraw application
     source = NULL,
     
+    #' @field elements (`list()`)\cr
+    #' A list of objects representing excalidraw elements on canvas	
+    elements = list(),
+    
     #' @field appState (`list()`)\cr
-    #' ExcaliDraw app state
+    #' Additional application state/configuration	
     appState = NULL,
     
     #' @field files (`list()`)\cr
-    #' ExcaliDraw files
+    #' List of data for excalidraw image elements
     files = NULL,
-    
-    #' @field elements (`list()`)\cr
-    #' ExcaliDraw elements
-    elements = list(),
     
     #' @description Initialize an ExcalidrawDoc object
     initialize = function() {
       self$type   <- "excalidraw"
       self$version <- 2L
-      self$source  <- "minixcali"
+      self$source  <- "https://baptiste.github.io/minixcali/"
       self$appState <-
         list(viewBackgroundColor = "#ffffff",
              gridSize = NA)
