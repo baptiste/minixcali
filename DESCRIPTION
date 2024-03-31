@@ -14,8 +14,11 @@ Depends:
     tibble,
     tidyr
 Imports:
+    digest,
     jsonlite,
-    R6
+    R6,
+    rlang,
+    tools
 Suggests: 
     flametree,
     ggplot2,

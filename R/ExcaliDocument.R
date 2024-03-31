@@ -56,6 +56,20 @@ ExcaliDocument <- R6::R6Class(
       
     },
     
+    #' @description Replace all diagram components
+    #'
+    #' @param ... List of replacement components
+    replace = function(...) {
+      replacement <- c(...)
+      self$elements <- replacement$elements %||% self$elements
+      self$type   <- replacement$type %||% self$type
+      self$version <- replacement$version %||% self$version
+      self$source  <- replacement$source %||% self$source
+      self$appState <- replacement$appState %||% self$appState
+      self$files <- replacement$files %||% self$files
+      invisible(self)
+    },
+    
     #' @description Save the document as json
     #' @param file Export file path
     export = function(file) {
@@ -63,7 +77,7 @@ ExcaliDocument <- R6::R6Class(
         type = self$type,
         version = self$version,
         source = self$source,
-        elements = self$elements,
+        elements = xkd_fmt_epoch(self$elements),
         appState = self$appState,
         files = self$files
       )

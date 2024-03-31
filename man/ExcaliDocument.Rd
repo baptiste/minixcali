@@ -37,6 +37,7 @@ List of data for excalidraw image elements}
 \itemize{
 \item \href{#method-ExcaliDocument-new}{\code{ExcaliDocument$new()}}
 \item \href{#method-ExcaliDocument-add}{\code{ExcaliDocument$add()}}
+\item \href{#method-ExcaliDocument-replace}{\code{ExcaliDocument$replace()}}
 \item \href{#method-ExcaliDocument-export}{\code{ExcaliDocument$export()}}
 \item \href{#method-ExcaliDocument-clone}{\code{ExcaliDocument$clone()}}
 }
@@ -64,6 +65,23 @@ Add a glyph to the scene
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{...}}{glyph attributes}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ExcaliDocument-replace"></a>}}
+\if{latex}{\out{\hypertarget{method-ExcaliDocument-replace}{}}}
+\subsection{Method \code{replace()}}{
+Replace all diagram components
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ExcaliDocument$replace(...)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{...}}{List of replacement components}
 }
 \if{html}{\out{</div>}}
 }
