@@ -45,6 +45,7 @@ ExcaliDocument <- R6::R6Class(
         list(viewBackgroundColor = "#ffffff",
              gridSize = NA)
       self$files <- list()
+      self$elements <- list()
       invisible(self)
     },
     
