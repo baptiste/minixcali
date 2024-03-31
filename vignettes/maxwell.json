@@ -2,8 +2,8 @@
   "type": "excalidraw",
   "version": 2,
   "source": "https://baptiste.github.io/minixcali/",
-  "elements": {
-    "1": {
+  "elements": [
+    {
       "type": "draw",
       "x": 47.7745,
       "y": 10.038,
@@ -38,9 +38,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "bdd03427ae630877fe6aeef865c50946",
-      "seed": 1234111227
+      "seed": 1677778551
     },
-    "2": {
+    {
       "type": "draw",
       "x": 80.0005,
       "y": 5.0005,
@@ -75,9 +75,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "5cfce1991405b36e0955385a28dbfaa6",
-      "seed": 651699269
+      "seed": 1271482109
     },
-    "3": {
+    {
       "type": "draw",
       "x": 23.0005,
       "y": 10.142,
@@ -129,9 +129,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "2dad6c0a72f120f14b7b04d843f3a02a",
-      "seed": 1260585478
+      "seed": 1987430924
     },
-    "4": {
+    {
       "type": "draw",
       "x": 34.8955,
       "y": 119.0705,
@@ -166,9 +166,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "3e143bc0101d31188efc4357d33e5765",
-      "seed": 1598926679
+      "seed": 948054033
     },
-    "5": {
+    {
       "type": "draw",
       "x": 30.0005,
       "y": -0.0005,
@@ -210,9 +210,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "be11dacfb1c54f34c2ba908f06762552",
-      "seed": 904106790
+      "seed": 636833865
     },
-    "6": {
+    {
       "type": "draw",
       "x": 42.4975,
       "y": 9.019,
@@ -248,9 +248,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "29a6270851755050e552dffdadf18592",
-      "seed": 944703904
+      "seed": 1445050910
     },
-    "7": {
+    {
       "type": "draw",
       "x": 63.325,
       "y": 3.8775,
@@ -284,9 +284,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "051b25eb87f8a15ab63825f4b2250d9d",
-      "seed": 111542024
+      "seed": 1977333154
     },
-    "8": {
+    {
       "type": "draw",
       "x": 46.713,
       "y": 15.5435,
@@ -327,9 +327,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "9e8c15e2f5e6e8ca745fa8e8ef524836",
-      "seed": 25586645
+      "seed": 862869741
     },
-    "9": {
+    {
       "type": "draw",
       "x": 30.6,
       "y": 2.778,
@@ -364,9 +364,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "5f9a956dd2b014870d947820dd9a7619",
-      "seed": 1605663278
+      "seed": 942125782
     },
-    "10": {
+    {
       "type": "draw",
       "x": 30,
       "y": 11.6875,
@@ -403,9 +403,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "0416bcd5253eb3787f86d1909b9eca90",
-      "seed": 849597105
+      "seed": 1661823040
     },
-    "11": {
+    {
       "type": "draw",
       "x": 47.4355,
       "y": 10.163,
@@ -446,9 +446,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "499a81ce15cc6e6e3e44e0127b0b7afc",
-      "seed": 1279933428
+      "seed": 713263665
     },
-    "12": {
+    {
       "type": "draw",
       "x": 10.266,
       "y": 11.2435,
@@ -487,9 +487,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "7e383800755b63395ac25c5dcf51ea06",
-      "seed": 156697966
+      "seed": 497581461
     },
-    "13": {
+    {
       "type": "draw",
       "x": 25.179,
       "y": 19.7785,
@@ -533,9 +533,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "57b8609cf03a79952d5eb9a58a58c9dd",
-      "seed": 1821136236
+      "seed": 424297142
     },
-    "14": {
+    {
       "type": "draw",
       "x": 60.194,
       "y": 3.1395,
@@ -569,10 +569,9 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "fc58a5ae679abb923c2eeb2f9ea01cef",
-      "seed": 713263665
-    },
-    "elements": []
-  },
+      "seed": 83920563
+    }
+  ],
   "appState": {
     "viewBackgroundColor": "#ffffff",
     "gridSize": null

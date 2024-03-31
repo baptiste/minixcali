@@ -11,6 +11,8 @@ output:
   toc: true
   toc_depth: 3
   self_contained: false
+resource_files:
+  - fun.svg
 ---
 
 ```{r setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'}
