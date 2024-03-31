@@ -29,7 +29,7 @@ xkd_read <- function(file,
     simplifyVector = simplifyVector
   )
   
-  doc <- xkd_fmt_date(doc)
+  doc[["elements"]] <- xkd_fmt_date(doc[["elements"]])
   
   if (!excalidoc) {
     return(doc)

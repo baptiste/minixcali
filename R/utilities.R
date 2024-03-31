@@ -16,32 +16,38 @@ to_epoch_date <- function(x, tz = "UTC") {
 
 #' @noRd
 xkd_fmt_date <- function(x) {
-  x[["elements"]] <- lapply(
-    x[["elements"]],
-    \(x) {
-      if (!is.null(x[["updated"]])) {
-        x[["updated"]] <- from_epoch_date(x[["updated"]])
+  if (!is.data.frame(x)) {
+    x <- lapply(
+      x,
+      \(x) {
+        if (!is.null(x[["updated"]])) {
+          x[["updated"]] <- from_epoch_date(x[["updated"]])
+        }
+        
+        x
       }
-      
-      x
-    }
-  )
+    )
+  } else if (!is.null(x[["updated"]])) {
+    x[["updated"]] <- from_epoch_date(x[["updated"]])
+  }
   
   x
 }
 
 #' @noRd
 xkd_fmt_epoch <- function(x) {
-  x[["elements"]] <- lapply(
-    x[["elements"]],
-    \(x) {
-      if (!is.null(x[["updated"]])) {
-        x[["updated"]] <- to_epoch_date(x[["updated"]])
+  if (!is.data.frame(x)) {
+    x <- lapply(
+      x,
+      \(x) {
+        if (!is.null(x[["updated"]])) {
+          x[["updated"]] <- to_epoch_date(x[["updated"]])
+        }
+        
+        x
       }
-      
-      x
-    }
-  )
-  
-  x
+    )
+  } else if (!is.null(x[["updated"]])) {
+    x[["updated"]] <- to_epoch_date(x[["updated"]])
+  }
 }
