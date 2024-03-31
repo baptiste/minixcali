@@ -9,10 +9,6 @@ License: MIT + file LICENSE
 URL: https://github.com/baptiste/minixcali,
     https://baptiste.github.io/minixcali/
 BugReports: https://github.com/baptiste/minixcali/issues
-Depends: 
-    purrr,
-    tibble,
-    tidyr
 Imports:
     digest,
     jsonlite,
@@ -20,15 +16,21 @@ Imports:
     rlang,
     tools
 Suggests: 
+    dplyr,
     flametree,
     ggplot2,
+    gridExtra,
     gridfont (>= 0.1.0),
     htmltools,
     isoband,
     knitr,
     magrittr,
+    purrr,
     rmarkdown,
+    scales,
     svgchop (>= 0.2.0),
+    tibble,
+    tidyr,
     xml2
 VignetteBuilder: 
     knitr
@@ -37,5 +39,7 @@ Remotes:
     coolbutuseless/gridfont
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends: 
+    R (>= 3.5.0)
