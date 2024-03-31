@@ -29,7 +29,7 @@ d <- Excali_doc()
 shape <- xkd_rectangle(width = 300, height=200,
                        fillStyle = 'hachure', roughness = 2)
 d$add(shape)
-d$export(file='output.json')
+d$export(file = file.path(tempdir(), 'output.json'))
 
 ```
 
