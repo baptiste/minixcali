@@ -171,6 +171,8 @@ The drawing may be edited at https://excalidraw.com/#json=5181621544157184,h3q8W
 Say we have inherited some (x,y) coordinates representing a polygon from a drawing program; we can insert them into the `points` attribute and from there generate the scene as above. It is also possible to group multiple paths by giving them a common `group` attribute, as illustrated below. The resulting group can then be edited (moved, rotated, attribute changes, etc.) as one object in Excalidraw.
 
 ```{r kevin}
+source(system.file("samples/pdl.R", package = "minixcali"))
+
 str(.kevin) # stored coords in the package under data/
 
 d <- Excali_doc()

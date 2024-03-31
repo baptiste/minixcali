@@ -52,6 +52,8 @@ d$export(file='testing.json')
 knitr::include_graphics('testing.png')
 
 ## ----kevin--------------------------------------------------------------------
+source(system.file("samples/pdl.R", package = "minixcali"))
+
 str(.kevin) # stored coords in the package under data/
 
 d <- Excali_doc()

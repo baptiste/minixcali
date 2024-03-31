@@ -11,6 +11,8 @@ output:
   toc: true
   toc_depth: 3
   self_contained: false
+resource_files:
+  - maxwell_equation.svg
 ---
 
 ```{r setup, echo=FALSE, message=FALSE,warning=FALSE,out.width='100%'}
@@ -42,7 +44,6 @@ The SVG file contains many polylines such as
 ## Getting point coordinates
 
 The `{svgchop}` package interprets a subset of the SVG standard and breaks down objects (polygons, paths, etc.) into linear paths with simple (x, y) coordinates, which can then feed to the Excalidraw `draw` element. 
-
 
 ```{r svgchop}
 # remotes::install_github('brodieG/svgchop')
