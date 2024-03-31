@@ -223,6 +223,9 @@ xkd_draw <- function(x = 0,
 #' @param textAlign "left", "center", "right"
 #' @param verticalAlign "bottom", "center", "top"
 #' @param baseline offset in pts?
+#' @param subtype Subtype
+#' @param containerId Container ID
+#' @param customData List of custom data
 #' @export
 xkd_math <- function(x = 0.0,
                      y = 0.0,
@@ -250,7 +253,7 @@ xkd_math <- function(x = 0.0,
                      versionNonce = 12345,
                      isDeleted = FALSE,
                      subtype = "math",
-                    containerId = NA,
+                     containerId = NA,
                      # originalText = "\\nabla\\cdot\\mathbf{E}",
                      customData =list(
                        useTex =  TRUE,
@@ -333,6 +336,7 @@ xkd_text <- function(x = 0.0,
 }
 
 #' @title xkd_element
+#' @param type Element type
 #' @param x x position of glyph in px
 #' @param y y position of glyph in px
 #' @param width glyph width in px
@@ -351,6 +355,7 @@ xkd_text <- function(x = 0.0,
 #' @param boundElementIds list of IDs used for connectors
 #' @param version of glyph for collaboration
 #' @param versionNonce of glyph for collaboration
+#' @param ... Unused
 #' @export
 xkd_element <- function(type = 'rectangle',
                         x = 0.0,
