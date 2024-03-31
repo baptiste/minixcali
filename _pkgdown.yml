@@ -1,7 +1,19 @@
 home:
   title: Experimental package to output to Excalidraw format
   description: Create Excalidraw scenes from R
-  
+
+articles:
+  - title: Overview
+    navbar: ~
+    contents: 
+    - Overview
+    - Volcano
+    - FlameTree
+    - Gridfont
+    - SvgChop
+    - field
+    - maxwell
+
 template:
   params:
     bootswatch: lumen

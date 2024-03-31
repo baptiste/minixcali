@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">minixcali</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
       </span>
     </div>
 
@@ -44,33 +46,39 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/Overview.html">Overview of the minixcali package</a>
+    </li>
+    <li>
+      <a href="../articles/Volcano.html">Volcano levelplot in Excalidraw</a>
+    </li>
+    <li>
       <a href="../articles/FlameTree.html">Drawing a flametree in Excalidraw</a>
     </li>
     <li>
       <a href="../articles/Gridfont.html">Single-stroke text in Excalidraw</a>
     </li>
     <li>
-      <a href="../articles/Overview.html">Overview of the minixcali package</a>
-    </li>
-    <li>
       <a href="../articles/SvgChop.html">Parsing existing SVGs for use in Excalidraw</a>
     </li>
     <li>
-      <a href="../articles/Volcano.html">Volcano levelplot in Excalidraw</a>
+      <a href="../articles/field.html">Arrow field in Excalidraw</a>
+    </li>
+    <li>
+      <a href="../articles/maxwell.html">Maxwell's equations in Excalidraw</a>
     </li>
   </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/baptiste/minixcali/">
+  <a href="https://github.com/baptiste/minixcali/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,15 +93,16 @@
 
       
 
-      </header><script src="Overview_files/header-attrs-2.6/header-attrs.js"></script><script src="Overview_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Overview of the minixcali package</h1>
-                        <h4 class="author">Baptiste Auguié</h4>
+                        <h4 data-toc-skip class="author">Baptiste
+Auguié</h4>
             
-            <h4 class="date">2021-01-03</h4>
+            <h4 data-toc-skip class="date">2024-03-31</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/baptiste/minixcali/blob/master/vignettes/Overview.Rmd"><code>vignettes/Overview.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/baptiste/minixcali/blob/HEAD/vignettes/Overview.Rmd" class="external-link"><code>vignettes/Overview.Rmd</code></a></small>
       <div class="hidden name"><code>Overview.Rmd</code></div>
 
     </div>
@@ -101,10 +110,13 @@
     
     
 <p><img src="overview.png" width="100%"></p>
-<div id="the-excalidraw-format" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-excalidraw-format" class="anchor"></a>The Excalidraw format</h2>
-<p>Excalidraw can import and export its scenes in json; the format consists of 5 top-level entries, of which the important one is <code>elements</code>, which is an array containing the description of each basic glyph in the scene.</p>
+<div class="section level2">
+<h2 id="the-excalidraw-format">The Excalidraw format<a class="anchor" aria-label="anchor" href="#the-excalidraw-format"></a>
+</h2>
+<p>Excalidraw can import and export its scenes in json; the format
+consists of 5 top-level entries, of which the important one is
+<code>elements</code>, which is an array containing the description of
+each basic glyph in the scene.</p>
 <pre><code>{
 "type": "excalidraw",
 "version": 2,
@@ -128,13 +140,18 @@
 "gridSize": null
 }
 }</code></pre>
-<p>Note that there doesn’t appear to be a device size / viewport / viewbox. I’m also unsure what the units are; looking at the SVG export it seems to be the same default “px”, i.e. 1/96th of an inch, i.e. about a quarter of a mm.</p>
+<p>Note that there doesn’t appear to be a device size / viewport /
+viewbox. I’m also unsure what the units are; looking at the SVG export
+it seems to be the same default “px”, i.e. 1/96th of an inch, i.e. about
+a quarter of a mm.</p>
 </div>
-<div id="elements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#elements" class="anchor"></a>Elements</h2>
+<div class="section level2">
+<h2 id="elements">Elements<a class="anchor" aria-label="anchor" href="#elements"></a>
+</h2>
 <ul>
-<li>“type”: “rectangle” or “ellipse” or “draw” or “text”. There’s also “line” and “arrow” but the difference is only relevant for the user interface.</li>
+<li>“type”: “rectangle” or “ellipse” or “draw” or “text”. There’s also
+“line” and “arrow” but the difference is only relevant for the user
+interface.</li>
 </ul>
 <p>Most attributes are pretty straight-forward,</p>
 <ul>
@@ -152,7 +169,8 @@
 <li>“height”: 300</li>
 <li>“strokeSharpness”: “sharp” or “round”</li>
 </ul>
-<p>The following are for text (but it doesn’t seem to hurt if irrelevant parameters are passed to another shape type),</p>
+<p>The following are for text (but it doesn’t seem to hurt if irrelevant
+parameters are passed to another shape type),</p>
 <ul>
 <li>“text”: “this is text”</li>
 <li>“fontSize”: 36</li>
@@ -164,179 +182,208 @@
 <p>Each glyph is assigned some identification,</p>
 <ul>
 <li>“seed”: 233882977 # to generate unique random variations</li>
-<li>“id”: “3HjMtdwNS5YZdRqmv3BFM” # unique ID, e.g. md5 hash of object</li>
+<li>“id”: “3HjMtdwNS5YZdRqmv3BFM” # unique ID, e.g. md5 hash of
+object</li>
 <li>“groupIds”: [] # array of strings indicating glyph groupings</li>
-<li>“boundElementIds” — ids of (linear) elements that are bound to this element for connected glyphs</li>
+<li>“boundElementIds” — ids of (linear) elements that are bound to this
+element for connected glyphs</li>
 </ul>
 <p>Finally the following attributes for collaboration,</p>
 <ul>
-<li>“version”: integer that is sequentially incremented on each change. Currently used to reconcile elements during collaboration or when saving to server.</li>
-<li>“versionNonce”: random integer that is regenerated on each change. Used for deterministic reconciliation of updates during collaboration, in case the versions are identical.</li>
+<li>“version”: integer that is sequentially incremented on each change.
+Currently used to reconcile elements during collaboration or when saving
+to server.</li>
+<li>“versionNonce”: random integer that is regenerated on each change.
+Used for deterministic reconciliation of updates during collaboration,
+in case the versions are identical.</li>
 <li>“isDeleted”: flag to keep track of deletes in collaboration</li>
 </ul>
 </div>
-<div id="creating-a-simple-scene" class="section level2">
-<h2 class="hasAnchor">
-<a href="#creating-a-simple-scene" class="anchor"></a>Creating a simple scene</h2>
-<p><code>minixcali</code> defines a very basic R6 class <code>ExcaliDocument</code> which initialises the 5 top-level nodes of the json object. Two methods are defined,</p>
+<div class="section level2">
+<h2 id="creating-a-simple-scene">Creating a simple scene<a class="anchor" aria-label="anchor" href="#creating-a-simple-scene"></a>
+</h2>
+<p><code>minixcali</code> defines a very basic R6 class
+<code>ExcaliDocument</code> which initialises the 5 top-level nodes of
+the json object. Two methods are defined,</p>
 <ul>
 <li>
-<code>$add</code>, to add glyphs to the <code>elements</code> field</li>
+<code>$add</code>, to add glyphs to the <code>elements</code>
+field</li>
 <li>
-<code>$export</code>, to save the object to a json file (via <code>jsonlite</code>)</li>
+<code>$export</code>, to save the object to a json file (via
+<code>jsonlite</code>)</li>
 </ul>
-<p>The <code>$add</code> method simply appends glyph(s) to the list of elements. Each glyph needs to be a well-formed list of attributes, such as</p>
+<p>The <code>$add</code> method simply appends glyph(s) to the list of
+elements. Each glyph needs to be a well-formed list of attributes, such
+as</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"rectangle"</span>, 
-     x <span class="op">=</span> <span class="op">-</span><span class="fl">407.242554</span>, y <span class="op">=</span> <span class="fl">0</span>, 
-     width <span class="op">=</span> <span class="fl">44</span>, height <span class="op">=</span> <span class="fl">44</span>, 
-     angle <span class="op">=</span> <span class="fl">0</span>, 
-     strokeColor <span class="op">=</span> <span class="st">"#495057"</span>, 
-     backgroundColor <span class="op">=</span> <span class="st">"#ced4da"</span>, 
-     fillStyle <span class="op">=</span> <span class="st">"hachure"</span>, 
-     strokeWidth <span class="op">=</span> <span class="fl">1</span>, 
-     strokeStyle <span class="op">=</span> <span class="st">"solid"</span>, 
-     roughness <span class="op">=</span> <span class="fl">1L</span>, 
-     opacity <span class="op">=</span> <span class="fl">100L</span>, 
-     strokeSharpness <span class="op">=</span> <span class="st">"sharp"</span>, 
-     isDeleted <span class="op">=</span> <span class="cn">FALSE</span>, 
-     groupIds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>, 
-     boundElementIds <span class="op">=</span> <span class="cn">NA</span>, 
-     id <span class="op">=</span> <span class="st">"2732dc14872d3709d5978813d7bf550c"</span>, 
-     seed <span class="op">=</span> <span class="fl">1260353516L</span>, 
-     version <span class="op">=</span> <span class="fl">32L</span>, 
-     versionNonce <span class="op">=</span> <span class="fl">784119031L</span><span class="op">)</span></code></pre></div>
-<p><code>minixcali</code> provides 4 functions (<code><a href="../reference/xkd_rectangle.html">xkd_rectangle()</a></code>, <code><a href="../reference/xkd_ellipse.html">xkd_ellipse()</a></code>, <code><a href="../reference/xkd_draw.html">xkd_draw()</a></code>, <code><a href="../reference/xkd_text.html">xkd_text()</a></code>) to generate such lists from the set of default parameters.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"rectangle"</span>, </span>
+<span>     x <span class="op">=</span> <span class="op">-</span><span class="fl">407.242554</span>, y <span class="op">=</span> <span class="fl">0</span>, </span>
+<span>     width <span class="op">=</span> <span class="fl">44</span>, height <span class="op">=</span> <span class="fl">44</span>, </span>
+<span>     angle <span class="op">=</span> <span class="fl">0</span>, </span>
+<span>     strokeColor <span class="op">=</span> <span class="st">"#495057"</span>, </span>
+<span>     backgroundColor <span class="op">=</span> <span class="st">"#ced4da"</span>, </span>
+<span>     fillStyle <span class="op">=</span> <span class="st">"hachure"</span>, </span>
+<span>     strokeWidth <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>     strokeStyle <span class="op">=</span> <span class="st">"solid"</span>, </span>
+<span>     roughness <span class="op">=</span> <span class="fl">1L</span>, </span>
+<span>     opacity <span class="op">=</span> <span class="fl">100L</span>, </span>
+<span>     strokeSharpness <span class="op">=</span> <span class="st">"sharp"</span>, </span>
+<span>     isDeleted <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>     groupIds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, </span>
+<span>     boundElementIds <span class="op">=</span> <span class="cn">NA</span>, </span>
+<span>     id <span class="op">=</span> <span class="st">"2732dc14872d3709d5978813d7bf550c"</span>, </span>
+<span>     seed <span class="op">=</span> <span class="fl">1260353516L</span>, </span>
+<span>     version <span class="op">=</span> <span class="fl">32L</span>, </span>
+<span>     versionNonce <span class="op">=</span> <span class="fl">784119031L</span><span class="op">)</span></span></code></pre></div>
+<p><code>minixcali</code> provides 4 functions
+(<code><a href="../reference/xkd_rectangle.html">xkd_rectangle()</a></code>, <code><a href="../reference/xkd_ellipse.html">xkd_ellipse()</a></code>,
+<code><a href="../reference/xkd_draw.html">xkd_draw()</a></code>, <code><a href="../reference/xkd_text.html">xkd_text()</a></code>) to generate such lists
+from the set of default parameters.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/xkd_text.html">xkd_text</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"new label"</span>, 
-             strokeColor <span class="op">=</span> <span class="st">"#555555"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## List of 27
-##  $ type           : chr "text"
-##  $ x              : num 0
-##  $ y              : num 0
-##  $ width          : num 100
-##  $ height         : num 100
-##  $ angle          : num 0
-##  $ strokeColor    : chr "#555555"
-##  $ backgroundColor: chr "#868e96"
-##  $ fillStyle      : chr "solid"
-##  $ strokeWidth    : int 2
-##  $ strokeStyle    : chr "solid"
-##  $ roughness      : int 0
-##  $ opacity        : int 100
-##  $ groupIds       : list()
-##  $ strokeSharpness: chr "sharp"
-##  $ isDeleted      : logi FALSE
-##  $ boundElementIds: logi NA
-##  $ text           : chr "new label"
-##  $ fontSize       : int 36
-##  $ fontFamily     : int 1
-##  $ textAlign      : chr "left"
-##  $ verticalAlign  : chr "top"
-##  $ baseline       : int 32
-##  $ version        : num 1
-##  $ versionNonce   : num 12345
-##  $ id             : chr "1f9a050f82d6fa104fb83235d82ff816"
-##  $ seed           : int 1716316776</code></pre>
-<p>To create multiple shapes at once it can be useful to create a list or data.frame of attributes, and use <code>purrr</code> functions to iterate over them,</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="../reference/xkd_text.html">xkd_text</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"new label"</span>, </span>
+<span>             strokeColor <span class="op">=</span> <span class="st">"#555555"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## List of 27</span></span>
+<span><span class="co">##  $ type           : chr "text"</span></span>
+<span><span class="co">##  $ x              : num 0</span></span>
+<span><span class="co">##  $ y              : num 0</span></span>
+<span><span class="co">##  $ width          : num 100</span></span>
+<span><span class="co">##  $ height         : num 100</span></span>
+<span><span class="co">##  $ angle          : num 0</span></span>
+<span><span class="co">##  $ strokeColor    : chr "#555555"</span></span>
+<span><span class="co">##  $ backgroundColor: chr "#868e96"</span></span>
+<span><span class="co">##  $ fillStyle      : chr "solid"</span></span>
+<span><span class="co">##  $ strokeWidth    : int 2</span></span>
+<span><span class="co">##  $ strokeStyle    : chr "solid"</span></span>
+<span><span class="co">##  $ roughness      : int 0</span></span>
+<span><span class="co">##  $ opacity        : int 100</span></span>
+<span><span class="co">##  $ groupIds       : list()</span></span>
+<span><span class="co">##  $ strokeSharpness: chr "sharp"</span></span>
+<span><span class="co">##  $ isDeleted      : logi FALSE</span></span>
+<span><span class="co">##  $ boundElementIds: logi NA</span></span>
+<span><span class="co">##  $ text           : chr "new label"</span></span>
+<span><span class="co">##  $ fontSize       : int 36</span></span>
+<span><span class="co">##  $ fontFamily     : int 1</span></span>
+<span><span class="co">##  $ textAlign      : chr "left"</span></span>
+<span><span class="co">##  $ verticalAlign  : chr "top"</span></span>
+<span><span class="co">##  $ baseline       : int 32</span></span>
+<span><span class="co">##  $ version        : num 1</span></span>
+<span><span class="co">##  $ versionNonce   : num 12345</span></span>
+<span><span class="co">##  $ id             : chr "1f9a050f82d6fa104fb83235d82ff816"</span></span>
+<span><span class="co">##  $ seed           : int 1790739971</span></span></code></pre>
+<p>To create multiple shapes at once it can be useful to create a list
+or data.frame of attributes, and use <code>purrr</code> functions to
+iterate over them,</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">tribble</span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">width</span>, <span class="op">~</span><span class="va">height</span>, <span class="op">~</span><span class="va">roughness</span>, <span class="op">~</span><span class="va">backgroundColor</span>,
-             <span class="op">-</span><span class="fl">300</span> ,   <span class="op">-</span><span class="fl">80</span>,   <span class="fl">300</span>,    <span class="fl">300</span>, <span class="fl">0</span>, <span class="st">"#ced4da"</span>,
-             <span class="fl">10</span> ,   <span class="op">-</span><span class="fl">80</span>,   <span class="fl">300</span>,    <span class="fl">300</span>, <span class="fl">1</span>, <span class="st">"#ced4da"</span>,
-             <span class="fl">320</span> ,   <span class="op">-</span><span class="fl">80</span>,   <span class="fl">300</span>,    <span class="fl">300</span>, <span class="fl">2</span>, <span class="st">"#ced4da"</span><span class="op">)</span>
-
-<span class="va">a</span><span class="op">$</span><span class="va">strokeWidth</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-
-<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">invoke</span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">add</span>, <span class="fu">pmap</span><span class="op">(</span><span class="va">a</span>, <span class="fu">minixcali</span><span class="fu">::</span><span class="va"><a href="../reference/xkd_rectangle.html">xkd_rectangle</a></span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">elements</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## List of 3
-##  $ :List of 21
-##  $ :List of 21
-##  $ :List of 21</code></pre>
-<p>We can the export the full tree to json and open it in Excalidraw,</p>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">x</span>, <span class="op">~</span><span class="va">y</span>, <span class="op">~</span><span class="va">width</span>, <span class="op">~</span><span class="va">height</span>, <span class="op">~</span><span class="va">roughness</span>, <span class="op">~</span><span class="va">backgroundColor</span>,</span>
+<span>             <span class="op">-</span><span class="fl">300</span> ,   <span class="op">-</span><span class="fl">80</span>,   <span class="fl">300</span>,    <span class="fl">300</span>, <span class="fl">0</span>, <span class="st">"#ced4da"</span>,</span>
+<span>             <span class="fl">10</span> ,   <span class="op">-</span><span class="fl">80</span>,   <span class="fl">300</span>,    <span class="fl">300</span>, <span class="fl">1</span>, <span class="st">"#ced4da"</span>,</span>
+<span>             <span class="fl">320</span> ,   <span class="op">-</span><span class="fl">80</span>,   <span class="fl">300</span>,    <span class="fl">300</span>, <span class="fl">2</span>, <span class="st">"#ced4da"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">a</span><span class="op">$</span><span class="va">strokeWidth</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span></span>
+<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">invoke</span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">add</span>, <span class="fu">pmap</span><span class="op">(</span><span class="va">a</span>, <span class="va">xkd_rectangle</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">elements</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## List of 3</span></span>
+<span><span class="co">##  $ :List of 21</span></span>
+<span><span class="co">##  $ :List of 21</span></span>
+<span><span class="co">##  $ :List of 21</span></span></code></pre>
+<p>We can the export the full tree to json and open it in
+Excalidraw,</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span>file<span class="op">=</span><span class="st">'testing.json'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span>file<span class="op">=</span><span class="st">'testing.json'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="testing.png" width="100%"></p>
-<p>The drawing may be edited at <a href="https://excalidraw.com/#json=5181621544157184,h3q8WL5-2HPBFjkjQeu5RA" class="uri">https://excalidraw.com/#json=5181621544157184,h3q8WL5-2HPBFjkjQeu5RA</a></p>
+<p>The drawing may be edited at <a href="https://excalidraw.com/#json=5181621544157184,h3q8WL5-2HPBFjkjQeu5RA" class="external-link uri">https://excalidraw.com/#json=5181621544157184,h3q8WL5-2HPBFjkjQeu5RA</a></p>
 </div>
-<div id="lines" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lines" class="anchor"></a>Lines</h2>
-<p><code>line</code>, <code>arrow</code> and <code>draw</code> elements (the difference is in the interaction with online tools; there’s none from the JSON perspective) require a <code>points</code> attribute that encodes (x,y) node coordinates in an array structure.</p>
-<p>Say we have inherited some (x,y) coordinates representing a polygon from a drawing program; we can insert them into the <code>points</code> attribute and from there generate the scene as above. It is also possible to group multiple paths by giving them a common <code>group</code> attribute, as illustrated below. The resulting group can then be edited (moved, rotated, attribute changes, etc.) as one object in Excalidraw.</p>
+<div class="section level2">
+<h2 id="lines">Lines<a class="anchor" aria-label="anchor" href="#lines"></a>
+</h2>
+<p><code>line</code>, <code>arrow</code> and <code>draw</code> elements
+(the difference is in the interaction with online tools; there’s none
+from the JSON perspective) require a <code>points</code> attribute that
+encodes (x,y) node coordinates in an array structure.</p>
+<p>Say we have inherited some (x,y) coordinates representing a polygon
+from a drawing program; we can insert them into the <code>points</code>
+attribute and from there generate the scene as above. It is also
+possible to group multiple paths by giving them a common
+<code>group</code> attribute, as illustrated below. The resulting group
+can then be edited (moved, rotated, attribute changes, etc.) as one
+object in Excalidraw.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">.kevin</span><span class="op">)</span> <span class="co"># stored coords in the package under data/</span></code></pre></div>
-<pre><code>## List of 6
-##  $ :List of 7
-##   ..$ x              : num -3.14
-##   ..$ y              : num 128
-##   ..$ width          : num 29.5
-##   ..$ height         : num 22.8
-##   ..$ backgroundColor: chr "#ced4da"
-##   ..$ strokeColor    : chr "#000000"
-##   ..$ points         : num [1:11, 1:2] -11.4 -39 -36.2 -22.2 -20.4 ...
-##  $ :List of 7
-##   ..$ x              : num -13.2
-##   ..$ y              : num 92.9
-##   ..$ width          : num 115
-##   ..$ height         : num 115
-##   ..$ backgroundColor: chr "#d8f0f9"
-##   ..$ strokeColor    : chr "#000000"
-##   ..$ points         : num [1:18, 1:2] 0 0.26 18.2 45.32 73.92 ...
-##  $ :List of 7
-##   ..$ x              : num -0.922
-##   ..$ y              : num 104
-##   ..$ width          : num 2.6
-##   ..$ height         : num 2.83
-##   ..$ backgroundColor: chr "#000000"
-##   ..$ strokeColor    : chr "#000000"
-##   ..$ points         : num [1:8, 1:2] 0 0.694 2.256 2.604 2.083 ...
-##  $ :List of 7
-##   ..$ x              : num 41.5
-##   ..$ y              : num 187
-##   ..$ width          : num 1.45
-##   ..$ height         : num 29.6
-##   ..$ backgroundColor: chr "#ced4da"
-##   ..$ strokeColor    : chr "#000000"
-##   ..$ points         : num [1:3, 1:2] -18.6 -18.6 -20 0 26.8 ...
-##  $ :List of 7
-##   ..$ x              : num 45.6
-##   ..$ y              : num 189
-##   ..$ width          : int 0
-##   ..$ height         : num 26
-##   ..$ backgroundColor: chr "#ced4da"
-##   ..$ strokeColor    : chr "#000000"
-##   ..$ points         : num [1:2, 1:2] 0 0 0 26
-##  $ :List of 7
-##   ..$ x              : num 13.1
-##   ..$ y              : num 153
-##   ..$ width          : num 47
-##   ..$ height         : num 15.2
-##   ..$ backgroundColor: chr "#ced4da"
-##   ..$ strokeColor    : chr "#000000"
-##   ..$ points         : num [1:5, 1:2] 0 0 15.9 41.9 47 ...</code></pre>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"samples/pdl.R"</span>, package <span class="op">=</span> <span class="st">"minixcali"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">.kevin</span><span class="op">)</span> <span class="co"># stored coords in the package under data/</span></span></code></pre></div>
+<pre><code><span><span class="co">## List of 6</span></span>
+<span><span class="co">##  $ :List of 7</span></span>
+<span><span class="co">##   ..$ x              : num -3.14</span></span>
+<span><span class="co">##   ..$ y              : num 128</span></span>
+<span><span class="co">##   ..$ width          : num 29.5</span></span>
+<span><span class="co">##   ..$ height         : num 22.8</span></span>
+<span><span class="co">##   ..$ backgroundColor: chr "#ced4da"</span></span>
+<span><span class="co">##   ..$ strokeColor    : chr "#000000"</span></span>
+<span><span class="co">##   ..$ points         : num [1:11, 1:2] -11.4 -39 -36.2 -22.2 -20.4 ...</span></span>
+<span><span class="co">##  $ :List of 7</span></span>
+<span><span class="co">##   ..$ x              : num -13.2</span></span>
+<span><span class="co">##   ..$ y              : num 92.9</span></span>
+<span><span class="co">##   ..$ width          : num 115</span></span>
+<span><span class="co">##   ..$ height         : num 115</span></span>
+<span><span class="co">##   ..$ backgroundColor: chr "#d8f0f9"</span></span>
+<span><span class="co">##   ..$ strokeColor    : chr "#000000"</span></span>
+<span><span class="co">##   ..$ points         : num [1:18, 1:2] 0 0.26 18.2 45.32 73.92 ...</span></span>
+<span><span class="co">##  $ :List of 7</span></span>
+<span><span class="co">##   ..$ x              : num -0.922</span></span>
+<span><span class="co">##   ..$ y              : num 104</span></span>
+<span><span class="co">##   ..$ width          : num 2.6</span></span>
+<span><span class="co">##   ..$ height         : num 2.83</span></span>
+<span><span class="co">##   ..$ backgroundColor: chr "#000000"</span></span>
+<span><span class="co">##   ..$ strokeColor    : chr "#000000"</span></span>
+<span><span class="co">##   ..$ points         : num [1:8, 1:2] 0 0.694 2.256 2.604 2.083 ...</span></span>
+<span><span class="co">##  $ :List of 7</span></span>
+<span><span class="co">##   ..$ x              : num 41.5</span></span>
+<span><span class="co">##   ..$ y              : num 187</span></span>
+<span><span class="co">##   ..$ width          : num 1.45</span></span>
+<span><span class="co">##   ..$ height         : num 29.6</span></span>
+<span><span class="co">##   ..$ backgroundColor: chr "#ced4da"</span></span>
+<span><span class="co">##   ..$ strokeColor    : chr "#000000"</span></span>
+<span><span class="co">##   ..$ points         : num [1:3, 1:2] -18.6 -18.6 -20 0 26.8 ...</span></span>
+<span><span class="co">##  $ :List of 7</span></span>
+<span><span class="co">##   ..$ x              : num 45.6</span></span>
+<span><span class="co">##   ..$ y              : num 189</span></span>
+<span><span class="co">##   ..$ width          : int 0</span></span>
+<span><span class="co">##   ..$ height         : num 26</span></span>
+<span><span class="co">##   ..$ backgroundColor: chr "#ced4da"</span></span>
+<span><span class="co">##   ..$ strokeColor    : chr "#000000"</span></span>
+<span><span class="co">##   ..$ points         : num [1:2, 1:2] 0 0 0 26</span></span>
+<span><span class="co">##  $ :List of 7</span></span>
+<span><span class="co">##   ..$ x              : num 13.1</span></span>
+<span><span class="co">##   ..$ y              : num 153</span></span>
+<span><span class="co">##   ..$ width          : num 47</span></span>
+<span><span class="co">##   ..$ height         : num 15.2</span></span>
+<span><span class="co">##   ..$ backgroundColor: chr "#ced4da"</span></span>
+<span><span class="co">##   ..$ strokeColor    : chr "#000000"</span></span>
+<span><span class="co">##   ..$ points         : num [1:5, 1:2] 0 0 15.9 41.9 47 ...</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="kw">for</span> <span class="op">(</span><span class="va">l</span> <span class="kw">in</span> <span class="va">.kevin</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">call</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">l</span>,
-    <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      groupIds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"kevin"</span><span class="op">)</span><span class="op">)</span>,
-      strokeSharpness <span class="op">=</span> <span class="st">"round"</span>,
-      fillStyle <span class="op">=</span> <span class="st">"solid"</span>,
-      strokeWidth <span class="op">=</span> <span class="fl">1L</span>,
-      roughness <span class="op">=</span> <span class="fl">0L</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-  
-  <span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu">invoke</span><span class="op">(</span><span class="va">xkd_draw</span>, <span class="va">call</span><span class="op">)</span>
-  <span class="va">d</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">shape</span><span class="op">)</span>
-  
-<span class="op">}</span>
-
-<span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="st">'drawing.json'</span><span class="op">)</span></code></pre></div>
-<p>Drawing at <a href="https://excalidraw.com/#json=5903088405708800,72BcP2Ry6NHWbHEUpidg9w" class="uri">https://excalidraw.com/#json=5903088405708800,72BcP2Ry6NHWbHEUpidg9w</a></p>
+<code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">l</span> <span class="kw">in</span> <span class="va">.kevin</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">call</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">l</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      groupIds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"kevin"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      strokeSharpness <span class="op">=</span> <span class="st">"round"</span>,</span>
+<span>      fillStyle <span class="op">=</span> <span class="st">"solid"</span>,</span>
+<span>      strokeWidth <span class="op">=</span> <span class="fl">1L</span>,</span>
+<span>      roughness <span class="op">=</span> <span class="fl">0L</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu">invoke</span><span class="op">(</span><span class="va">xkd_draw</span>, <span class="va">call</span><span class="op">)</span></span>
+<span>  <span class="va">d</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">shape</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="st">'drawing.json'</span><span class="op">)</span></span></code></pre></div>
+<p>Drawing at <a href="https://excalidraw.com/#json=5903088405708800,72BcP2Ry6NHWbHEUpidg9w" class="external-link uri">https://excalidraw.com/#json=5903088405708800,72BcP2Ry6NHWbHEUpidg9w</a></p>
 <p><img src="kevin.png" width="40%" style="display: block; margin: auto;"></p>
 </div>
   </div>
@@ -352,11 +399,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Baptiste Auguie.</p>
+  <p></p>
+<p>Developed by Baptiste Auguie.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
 </div>
 
       </footer>
@@ -364,6 +413,8 @@
 
   
 
+
+  
 
   </body>
 </html>
