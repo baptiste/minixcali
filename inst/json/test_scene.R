@@ -74,8 +74,9 @@ invoke(a$add, pmap(att, minixcali::g_element))
 # j <- jsonlite::read_json('json/tree.json', simplifyVector = FALSE)
 # dput(as.numeric(do.call(rbind, dput(j$elements[[1]]$points))))
 
+source(system.file("samples/tree.R", package = "minixcali"))
 
-tree <- minixcali::.tree
+tree <- .tree
 tree_g <- gly_glyph(type = 'draw',  
                     x=891,
                     y=340.5000000000001,
