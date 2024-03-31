@@ -6,6 +6,7 @@
 #' <https://docs.excalidraw.com/docs/codebase/json-schema>
 #' 
 #' @keywords internal
+#' @importFrom R6 R6Class
 ExcaliDocument <- R6::R6Class(
   "ExcaliDocument",
   
