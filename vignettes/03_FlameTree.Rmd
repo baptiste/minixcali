@@ -37,7 +37,7 @@ library(flametree)
 library(ggplot2)
 
 dat <- flametree_grow(seed = 4, time = 5) # data structure
-img <- flametree_plot(tree = dat) # ggplot object
+img <- flametree_plot(data = dat) # ggplot object
 img
 ```
 
@@ -75,8 +75,7 @@ for (ii in seq_along(b)) {
     strokeWidth = 1,
     roughness = 0L,
     strokeSharpness = "round",
-    groupIds = list("levelplot",
-                    paste0('level-', ii)),
+    groupIds = list("levelplot", paste0('level-', ii)),
     fillStyle = "solid",
     strokeColor = s$colour[1],
     backgroundColor = s$colour[1],

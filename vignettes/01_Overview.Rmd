@@ -143,7 +143,7 @@ str(xkd_text(text = "new label",
 To create multiple shapes at once it can be useful to create a list or data.frame of attributes, and use `purrr` functions to iterate over them,
 
 ```{r iterate, eval=TRUE}
-a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
+a <- tibble::tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
              -300 ,   -80,   300,    300, 0, "#ced4da",
              10 ,   -80,   300,    300, 1, "#ced4da",
              320 ,   -80,   300,    300, 2, "#ced4da")
@@ -151,7 +151,7 @@ a <- tribble(~x, ~y, ~width, ~height, ~roughness, ~backgroundColor,
 a$strokeWidth <- 2
 
 d <- Excali_doc()
-invoke(d$add, pmap(a, minixcali::xkd_rectangle))
+invoke(d$add, pmap(a, xkd_rectangle))
 str(d$elements, max.level = 1)
 ```
 
