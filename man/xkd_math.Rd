@@ -82,6 +82,12 @@ xkd_math(
 \item{versionNonce}{of glyph for collaboration}
 
 \item{isDeleted}{tag for collaboration}
+
+\item{subtype}{Subtype}
+
+\item{containerId}{Container ID}
+
+\item{customData}{List of custom data}
 }
 \description{
 xkd_math

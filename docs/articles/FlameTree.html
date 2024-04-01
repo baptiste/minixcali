@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">minixcali</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
       </span>
     </div>
 
@@ -44,33 +46,39 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/Overview.html">Overview of the minixcali package</a>
+    </li>
+    <li>
+      <a href="../articles/Volcano.html">Volcano levelplot in Excalidraw</a>
+    </li>
+    <li>
       <a href="../articles/FlameTree.html">Drawing a flametree in Excalidraw</a>
     </li>
     <li>
       <a href="../articles/Gridfont.html">Single-stroke text in Excalidraw</a>
     </li>
     <li>
-      <a href="../articles/Overview.html">Overview of the minixcali package</a>
-    </li>
-    <li>
       <a href="../articles/SvgChop.html">Parsing existing SVGs for use in Excalidraw</a>
     </li>
     <li>
-      <a href="../articles/Volcano.html">Volcano levelplot in Excalidraw</a>
+      <a href="../articles/field.html">Arrow field in Excalidraw</a>
+    </li>
+    <li>
+      <a href="../articles/maxwell.html">Maxwell's equations in Excalidraw</a>
     </li>
   </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/baptiste/minixcali/">
+  <a href="https://github.com/baptiste/minixcali/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,97 +93,102 @@
 
       
 
-      </header><script src="FlameTree_files/header-attrs-2.6/header-attrs.js"></script><script src="FlameTree_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Drawing a flametree in Excalidraw</h1>
-                        <h4 class="author">Baptiste Auguié</h4>
+                        <h4 data-toc-skip class="author">Baptiste
+Auguié</h4>
             
-            <h4 class="date">2021-01-03</h4>
+            <h4 data-toc-skip class="date">2024-03-31</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/baptiste/minixcali/blob/master/vignettes/FlameTree.Rmd"><code>vignettes/FlameTree.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/baptiste/minixcali/blob/HEAD/vignettes/FlameTree.Rmd" class="external-link"><code>vignettes/FlameTree.Rmd</code></a></small>
       <div class="hidden name"><code>FlameTree.Rmd</code></div>
 
     </div>
 
     
     
-<p>Let’s add a <a href="https://github.com/djnavarro/flametree">flametree</a> into Excalidraw.</p>
-<div id="the-r-object" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-r-object" class="anchor"></a>The R object</h2>
-<p>The flametree package uses ggplot2 for drawing, so we can piggyback the aesthetic mapping and simply extract point coordinates and colours in the plot’s data.</p>
+<p>Let’s add a <a href="https://github.com/djnavarro/flametree" class="external-link">flametree</a> into
+Excalidraw.</p>
+<div class="section level2">
+<h2 id="the-r-object">The R object<a class="anchor" aria-label="anchor" href="#the-r-object"></a>
+</h2>
+<p>The flametree package uses ggplot2 for drawing, so we can piggyback
+the aesthetic mapping and simply extract point coordinates and colours
+in the plot’s data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/baptiste/minixcali">minixcali</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/djnavarro/flametree">flametree</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/flametree/man/flametree_grow.html">flametree_grow</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">4</span>, time <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># data structure</span>
-<span class="va">img</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/flametree/man/flametree_plot.html">flametree_plot</a></span><span class="op">(</span>tree <span class="op">=</span> <span class="va">dat</span><span class="op">)</span> <span class="co"># ggplot object</span>
-<span class="va">img</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/baptiste/minixcali" class="external-link">minixcali</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/djnavarro/flametree" class="external-link">flametree</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/flametree/man/flametree_grow.html" class="external-link">flametree_grow</a></span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">4</span>, time <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># data structure</span></span>
+<span><span class="va">img</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/flametree/man/flametree_plot.html" class="external-link">flametree_plot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span> <span class="co"># ggplot object</span></span>
+<span><span class="va">img</span></span></code></pre></div>
 <p><img src="FlameTree_files/figure-html/unnamed-chunk-1-1.png" width="50%"></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot_build</a></span><span class="op">(</span><span class="va">img</span><span class="op">)</span>
-
-<span class="va">tr</span> <span class="op">&lt;-</span> <span class="va">gb</span><span class="op">$</span><span class="va">data</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">tr</span>, <span class="va">tr</span><span class="op">$</span><span class="va">group</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">b</span>, list.len <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
-<pre><code>## List of 63
-##  $ 1 :'data.frame':  100 obs. of  10 variables:
-##   ..$ colour  : chr [1:100] "#000004" "#120A32" "#000004" "#000004" ...
-##   ..$ size    : num [1:100] 6 6 6 6 6 6 6 6 6 6 ...
-##   ..$ x       : num [1:100] 0 0 0 0 0 0 0 0 0 0 ...
-##   .. [list output truncated]
-##  $ 2 :'data.frame':  100 obs. of  10 variables:
-##   ..$ colour  : chr [1:100] "#59106E" "#771C6D" "#000004" "#000004" ...
-##   ..$ size    : num [1:100] 5.28 5.28 6 6 6 ...
-##   ..$ x       : num [1:100] 0.00 -3.14e-05 -1.26e-04 -2.83e-04 -5.03e-04 ...
-##   .. [list output truncated]
-##  $ 3 :'data.frame':  100 obs. of  10 variables:
-##   ..$ colour  : chr [1:100] "#59106E" "#741A6E" "#000004" "#000004" ...
-##   ..$ size    : num [1:100] 5.28 5.28 6 6 6 ...
-##   ..$ x       : num [1:100] 0.00 -2.79e-05 -1.12e-04 -2.51e-04 -4.47e-04 ...
-##   .. [list output truncated]
-##   [list output truncated]</code></pre>
-<p>From there it’s a relatively straight-forward process to add one branch at a time to the Excalidraw tree.</p>
+<code class="sourceCode R"><span><span class="va">gb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html" class="external-link">ggplot_build</a></span><span class="op">(</span><span class="va">img</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="va">gb</span><span class="op">$</span><span class="va">data</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">tr</span>, <span class="va">tr</span><span class="op">$</span><span class="va">group</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">b</span>, list.len <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## List of 63</span></span>
+<span><span class="co">##  $ 1 :'data.frame':  100 obs. of  11 variables:</span></span>
+<span><span class="co">##   ..$ colour   : chr [1:100] "#1E2640" "#1E2640" "#1E2640" "#1E2640" ...</span></span>
+<span><span class="co">##   ..$ size     : num [1:100] 4.67 4.67 4.67 4.67 4.67 ...</span></span>
+<span><span class="co">##   ..$ x        : num [1:100] -0.43 -0.43 -0.43 -0.43 -0.43 ...</span></span>
+<span><span class="co">##   .. [list output truncated]</span></span>
+<span><span class="co">##  $ 2 :'data.frame':  100 obs. of  11 variables:</span></span>
+<span><span class="co">##   ..$ colour   : chr [1:100] "#E2A766" "#E2A766" "#1E2640" "#1E2640" ...</span></span>
+<span><span class="co">##   ..$ size     : num [1:100] 1.28 1.28 4.67 4.67 4.67 ...</span></span>
+<span><span class="co">##   ..$ x        : num [1:100] -0.389 -0.389 -0.389 -0.39 -0.39 ...</span></span>
+<span><span class="co">##   .. [list output truncated]</span></span>
+<span><span class="co">##  $ 3 :'data.frame':  100 obs. of  11 variables:</span></span>
+<span><span class="co">##   ..$ colour   : chr [1:100] "#E2A766" "#E2A766" "#1E2640" "#1E2640" ...</span></span>
+<span><span class="co">##   ..$ size     : num [1:100] 1.28 1.28 4.67 4.67 4.67 ...</span></span>
+<span><span class="co">##   ..$ x        : num [1:100] -0.992 -0.995 -0.998 -1.001 -1.005 ...</span></span>
+<span><span class="co">##   .. [list output truncated]</span></span>
+<span><span class="co">##   [list output truncated]</span></span></code></pre>
+<p>From there it’s a relatively straight-forward process to add one
+branch at a time to the Excalidraw tree.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span>
-
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span>
-
-<span class="va">scale</span> <span class="op">&lt;-</span> <span class="fl">100</span>
-
-<span class="kw">for</span> <span class="op">(</span><span class="va">ii</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">s</span> <span class="op">&lt;-</span> <span class="va">b</span><span class="op">[[</span><span class="va">ii</span><span class="op">]</span><span class="op">]</span>
-  
-  <span class="va">r_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">s</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>
-  <span class="va">r_y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">s</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>
-  
-  <span class="va">m</span> <span class="op">&lt;-</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">s</span><span class="op">$</span><span class="va">x</span> <span class="op">-</span> <span class="va">r_x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="op">-</span><span class="va">s</span><span class="op">$</span><span class="va">y</span> <span class="op">-</span> <span class="va">r_y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
-  
-  <span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xkd_draw.html">xkd_draw</a></span><span class="op">(</span>
-    x <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="va">r_x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-    y <span class="op">=</span>  <span class="va">scale</span> <span class="op">*</span> <span class="va">r_y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-    width <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">r_x</span><span class="op">)</span>,
-    height <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">r_y</span><span class="op">)</span>,
-    strokeWidth <span class="op">=</span> <span class="fl">1</span>,
-    roughness <span class="op">=</span> <span class="fl">0L</span>,
-    strokeSharpness <span class="op">=</span> <span class="st">"round"</span>,
-    groupIds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"levelplot"</span>,
-                    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'level-'</span>, <span class="va">ii</span><span class="op">)</span><span class="op">)</span>,
-    fillStyle <span class="op">=</span> <span class="st">"solid"</span>,
-    strokeColor <span class="op">=</span> <span class="va">s</span><span class="op">$</span><span class="va">colour</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-    backgroundColor <span class="op">=</span> <span class="va">s</span><span class="op">$</span><span class="va">colour</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,
-    points <span class="op">=</span> <span class="va">m</span><span class="op">)</span>
-  
-  <span class="va">d</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">shape</span><span class="op">)</span>
-  
-<span class="op">}</span>
-
-<span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="st">'tree.json'</span><span class="op">)</span></code></pre></div>
-<p>You can see this drawing at: <a href="https://excalidraw.com/#json=5730260331003904,U-jtojw6AHcRuH_lw2P4ng" class="uri">https://excalidraw.com/#json=5730260331003904,U-jtojw6AHcRuH_lw2P4ng</a></p>
-<p>(with time=7 the tree is more interesting but Excalidraw struggles and doesn’t offer a shareable link)</p>
+<code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Excali_doc.html">Excali_doc</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org" class="external-link">scales</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">scale</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">ii</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="va">b</span><span class="op">[[</span><span class="va">ii</span><span class="op">]</span><span class="op">]</span></span>
+<span>  </span>
+<span>  <span class="va">r_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">s</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="va">r_y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">s</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">m</span> <span class="op">&lt;-</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">s</span><span class="op">$</span><span class="va">x</span> <span class="op">-</span> <span class="va">r_x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,<span class="op">-</span><span class="va">s</span><span class="op">$</span><span class="va">y</span> <span class="op">-</span> <span class="va">r_y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xkd_draw.html">xkd_draw</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="va">r_x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>    y <span class="op">=</span>  <span class="va">scale</span> <span class="op">*</span> <span class="va">r_y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>    width <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="va">r_x</span><span class="op">)</span>,</span>
+<span>    height <span class="op">=</span> <span class="va">scale</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="va">r_y</span><span class="op">)</span>,</span>
+<span>    strokeWidth <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    roughness <span class="op">=</span> <span class="fl">0L</span>,</span>
+<span>    strokeSharpness <span class="op">=</span> <span class="st">"round"</span>,</span>
+<span>    groupIds <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"levelplot"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">'level-'</span>, <span class="va">ii</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    fillStyle <span class="op">=</span> <span class="st">"solid"</span>,</span>
+<span>    strokeColor <span class="op">=</span> <span class="va">s</span><span class="op">$</span><span class="va">colour</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>    backgroundColor <span class="op">=</span> <span class="va">s</span><span class="op">$</span><span class="va">colour</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>    points <span class="op">=</span> <span class="va">m</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">d</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">shape</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">d</span><span class="op">$</span><span class="fu">export</span><span class="op">(</span><span class="st">'tree.json'</span><span class="op">)</span></span></code></pre></div>
+<p>You can see this drawing at: <a href="https://excalidraw.com/#json=5730260331003904,U-jtojw6AHcRuH_lw2P4ng" class="external-link uri">https://excalidraw.com/#json=5730260331003904,U-jtojw6AHcRuH_lw2P4ng</a></p>
+<p>(with time=7 the tree is more interesting but Excalidraw struggles
+and doesn’t offer a shareable link)</p>
 <p><img src="tree.png" width="50%" style="display: block; margin: auto;"></p>
 </div>
   </div>
@@ -191,11 +204,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Baptiste Auguie.</p>
+  <p></p>
+<p>Developed by Baptiste Auguie.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
 </div>
 
       </footer>
@@ -203,6 +218,8 @@
 
   
 
+
+  
 
   </body>
 </html>

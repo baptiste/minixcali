@@ -6,6 +6,9 @@
 \usage{
 Excali_doc()
 }
+\value{
+An \code{ExcaliDocument} class object.
+}
 \description{
 Create a new ExcaliDocument
 }

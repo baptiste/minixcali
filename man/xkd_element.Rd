@@ -28,6 +28,8 @@ xkd_element(
 )
 }
 \arguments{
+\item{type}{Element type}
+
 \item{x}{x position of glyph in px}
 
 \item{y}{y position of glyph in px}
@@ -63,6 +65,8 @@ xkd_element(
 \item{version}{of glyph for collaboration}
 
 \item{versionNonce}{of glyph for collaboration}
+
+\item{...}{Unused}
 }
 \description{
 xkd_element

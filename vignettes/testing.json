@@ -1,7 +1,7 @@
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "minixcali",
+  "source": "https://baptiste.github.io/minixcali/",
   "elements": [
     {
       "type": "rectangle",
@@ -24,7 +24,7 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "b9d4762b4d18bd9dba02a67b1da6bc66",
-      "seed": 1258368657
+      "seed": 603785525
     },
     {
       "type": "rectangle",
@@ -47,7 +47,7 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "d8eb67aec109683618c3b39b6be91c0b",
-      "seed": 522180008
+      "seed": 1375189512
     },
     {
       "type": "rectangle",
@@ -70,11 +70,12 @@
       "version": 1,
       "versionNonce": 12345,
       "id": "cf0d49b627f584404d9c869b503f10b1",
-      "seed": 298421283
+      "seed": 1875545136
     }
   ],
   "appState": {
     "viewBackgroundColor": "#ffffff",
     "gridSize": null
-  }
+  },
+  "files": []
 }
